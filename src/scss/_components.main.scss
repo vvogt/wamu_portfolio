@@ -1,0 +1,47 @@
+.topLayer {
+   z-index: 4;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+/*    background-color: rgb(165, 17, 17); */
+   top: 0;
+   left: 0;
+
+   & * {
+      position: absolute;
+   }
+
+   .ball {
+      top: 900px;
+      left: 70%;
+      height: 200px;
+      width: auto;
+   }
+
+   .bucket {
+      top: 1200px;
+      left: 10%;
+      height: 200px;
+      width: auto;
+   }
+
+   .strawberry {
+      top: 1700px;
+      left: 75%;
+      height: 200px;
+      width: auto;
+   }
+
+   .okul {
+      top: 250vh;
+      left: 15%;
+      height: 200px;
+      width: 200px;
+   }
+
+   .okul img {
+      transform: rotate(-10deg);
+      height: 200px;
+      width: auto;
+   }
+}

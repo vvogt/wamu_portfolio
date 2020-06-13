@@ -1,0 +1,40 @@
+/* ------------------------------------------
+   settings.VARIABLES
+------------------------------------------ */
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Raleway&display=swap');
+
+$font_h: 'Fredoka One', cursive;
+$font: 'Raleway', sans-serif;
+
+$font_btn: rem-calc(15);
+
+// Colors
+$black: #1d1d1d;
+$gray-dark: #777676;
+$gray-light: #f4f4f4;
+$white: #ffffff;
+$purple: #C900FB;
+$orange-drkr: #e65000;
+
+// Layout
+$gutter: 20px;
+
+// Animations
+$transition-in: 0.1s;
+$transition-out: 0.3s;
+
+// Box Shadow
+$shadow_light: 1px 2px 2px rgba($black, 0.1);
+$shadow_dark: 1px 2px 2px rgba($black, 0.2);
+
+// Padding
+$padding_lr_1: 240px;
+$padding_lr_2: 140px;
+$padding_lr_3: 80px;
+$padding_lr_4: 20px;
+
+$padding-top: 60px;
+$padding-bottom: 80px;

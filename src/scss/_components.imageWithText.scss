@@ -1,0 +1,58 @@
+.imageWithText {
+   @include setLRPadding();
+   padding-top: 50px;
+   padding-bottom: 100px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   overflow: visible;
+
+   .text {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      text-align: right;
+      margin-right: 100px;
+
+      h2 {
+         font-size: rem-calc(20);
+         line-height: rem-calc(24);
+      }
+   }
+
+   .image {
+
+      .work {
+         height: 400px;
+         width: auto;
+         background-color: $gray-dark;
+      }
+
+      .work.vertical {
+         height: 600px;
+         width: auto;
+      }
+   }
+}
+
+.imageWithText:nth-of-type(even) {
+   .text {
+      order: 2;
+      text-align: left;
+      margin-left: 100px
+   }
+
+   .image {
+      order: 1;
+   }
+}
+
+[data-scroll] {
+  transition: opacity 1s;
+}
+[data-scroll="in"] {
+  opacity: 1;
+}
+[data-scroll="out"] {
+  opacity: 0;
+}
