@@ -14,6 +14,10 @@ import Okul from '../images/top_layer/okul.png';
 //PORTFOLIO IMAGES
 import EMpostcard from '../images/portfolio/EM_joulukaart-c-2016_210x192.jpg';
 import PMIllustration from '../images/portfolio/FB-aju.jpg';
+import DogIllustration1 from '../images/portfolio/koer.jpg';
+import DogIllustration2 from '../images/portfolio/Koer_A3.png';
+import Ekspress26 from '../images/portfolio/EE_syntar2015-b_275x355-5mm.jpg';
+import EPL110 from '../images/portfolio/EPL_synnip2ev_275x345.jpg';
 
 
 class Main extends React.Component {
@@ -24,11 +28,17 @@ class Main extends React.Component {
 
    componentDidMount() {
       this.rellax = new Rellax('.rellax');
-      //window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll);
+
+      let newState = this.state;
+      for (let i = 0; i < this.state.refs.length; i++) {
+         newState.appearStates.push(false); 
+      }
+      this.setState(newState);
    }
 
    componentWillUnmount() {
-      //window.removeEventListener('scroll', this.handleScroll)
+      window.removeEventListener('scroll', this.handleScroll)
    }
    
    handleScroll = () => {
@@ -42,22 +52,20 @@ class Main extends React.Component {
    }
 
    setAppearAnimations = (appearArray) => {
-      /* this.state.appearStates.map((element, index) => {
-         //element !== appearArray[index] && break;
-         if (element !== appearArray[index]) {
+      let valueToChange;
+
+      for (let i = 0; i < appearArray.length; i++) {
+         if (this.state.appearStates[i] !== appearArray[i]) {
+            valueToChange = i;
+            let newState = this.state;
+            newState.appearStates[valueToChange] = !this.state.appearStates[valueToChange] 
+      
+      
+            console.log('set: ' + valueToChange);
+            this.setState(newState);
             break;
          }
-      
-      }) */
-
-      /* let hasValueLessThanTen = this.some(function (val) {
-         
-      }); */
-
-      let newState = this.state;
-      newState.appearStates = appearArray;
-
-      this.setState(newState);
+      }
    }
 
    setRefs = (componentRef) => {
@@ -78,16 +86,16 @@ class Main extends React.Component {
    };
 
    renderPortfolioElements = (portfolioArray) => {
-      console.log(portfolioArray);
-
+      console.log(this.state.appearStates);
       return portfolioArray.map((element, index) => {
-         console.log(element.title)
          return <ImageWithText
              title={element.title}
              description={element.description}
+             images={element.images}
              imageOrientation={element.imageOrientation}
              setRefs={this.setRefs}
              key={index}
+             visible={this.state.appearStates[index]}
          />
       })
    }
@@ -95,17 +103,34 @@ class Main extends React.Component {
    render() {
       const portfolio = [
          {
-            title: 'Illustratsioon artiklile Postimehes',
+            title: 'Illustratsioon <br> artiklile Postimehes',
             description: '2018',
-            image: PMIllustration,
+            images: [PMIllustration],
             imageOrientation: 'horizontal'
          },
          {
             title: 'Ekspress Meedia <br> jõulukaart',
             description: '2016',
-            image: EMpostcard,
+            images: [EMpostcard],
             imageOrientation: 'vertical',
-         }
+         },
+         {
+            title: 'Koerte <br> illustratsioonid',
+            images: [DogIllustration1, DogIllustration2],
+            imageOrientation: 'vertical',
+         },
+         {
+            title: 'Eesti Päevaleht 110',
+            description: 'Logo + Kampaania 2015',
+            images: [EPL110],
+            imageOrientation: 'vertical'
+         },
+         {
+            title: 'Eesti Ekspressi <br> kampaania',
+            description: 'Printreklaam, 2015',
+            images: [Ekspress26],
+            imageOrientation: 'vertical'
+         },
       ]
 
       return(

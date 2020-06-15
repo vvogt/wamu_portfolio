@@ -16,7 +16,7 @@ export function setBgImage(imageUrl, fixedOrScroll, orientation) {
    let bgImageStyle = {
       backgroundImage: `url(${imageUrl})`,
       backgroundPosition: 'center',
-      backgroundSize: 'cover',
+      backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat',
       width: imageWidth,
       height: imageHeight,
