@@ -32,7 +32,7 @@ class Main extends React.Component {
 
       let newState = this.state;
       for (let i = 0; i < this.state.refs.length; i++) {
-         newState.appearStates.push(false); 
+         i !== 0 ? newState.appearStates.push(false) : newState.appearStates.push(true);
       }
       this.setState(newState);
    }
@@ -52,16 +52,11 @@ class Main extends React.Component {
    }
 
    setAppearAnimations = (appearArray) => {
-      let valueToChange;
-
       for (let i = 0; i < appearArray.length; i++) {
          if (this.state.appearStates[i] !== appearArray[i]) {
-            valueToChange = i;
             let newState = this.state;
-            newState.appearStates[valueToChange] = !this.state.appearStates[valueToChange] 
+            newState.appearStates[i] = !this.state.appearStates[i] 
       
-      
-            console.log('set: ' + valueToChange);
             this.setState(newState);
             break;
          }
@@ -141,22 +136,6 @@ class Main extends React.Component {
             />
 
             {this.renderPortfolioElements(portfolio)}
-
-{/*             <ImageWithText
-               title="Illustratsioon artiklile Postimehes"
-               description="2018"
-               image={PMIllustration}
-               imageOrientation="horizontal"
-               setRefs={this.setRefs}
-            />
-
-            <ImageWithText
-               title="Ekspress Meedia <br> jõulukaart"
-               description="2016"
-               image={EMpostcard}
-               imageOrientation="vertical"
-               setRefs={this.setRefs}
-            /> */}
 
             <div className="topLayer">
                <img src={Ball} className="ball rellax" data-rellax-speed="10" alt="abstract illustration"/>

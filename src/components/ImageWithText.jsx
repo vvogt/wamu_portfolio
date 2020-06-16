@@ -15,8 +15,8 @@ class ImageWithText extends React.Component {
 
    renderImages = () => {
       return this.props.images.map((imageURL, index) => {
-         //return <div className="image" style={setBgImage(imageURL, 'scroll', this.props.imageOrientation)} ref={this.imageRef} key={index}></div>
-         return <img src={imageURL} alt={this.props.description} ref={this.imageRef} key={index}></img>
+         //add ref only for the first image
+         return  index === 0 ? <img src={imageURL} alt={this.props.description} ref={this.imageRef} key={index}></img> : <img src={imageURL} alt={this.props.description} key={index}></img>
       })
    }
    
@@ -25,7 +25,7 @@ class ImageWithText extends React.Component {
 
       return(
          <div className={`imageWithText ${this.props.images.length > 1 && 'multipleImages'}`}>
-            <div className="text rellax" data-rellax-speed="0.8">
+            <div className="text rellax" data-rellax-speed="0.8" data-rellax-percentage="-1">
                <h2>{insertBreak(this.props.title)}</h2>
                {this.props.description && <p>{this.props.description}</p>}
             </div>
