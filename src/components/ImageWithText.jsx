@@ -28,7 +28,17 @@ class ImageWithText extends React.Component {
          console.log(aspectRatio);
          
          //add aspect-ratio as scss variable
-         image = index === 0 ? <img src={imageURL} alt={this.props.description} ref={this.imageRef} style={{ $aspectRatio: aspectRatio }} key={index}></img> : <img src={imageURL} alt={this.props.description} style={{ $aspectRatio: aspectRatio }} key={index}></img>
+         let imageStyle = this.props.imageOrientation === 'vertical' ?
+            {
+               height: '60vh',
+               width: `calc(60vh * ${aspectRatio})`
+            } :
+            {
+               width: '50vw',
+               height: `calc(50vw / ${aspectRatio})`
+            }
+
+         image = index === 0 ? <img src={imageURL} alt={this.props.description} ref={this.imageRef} style={imageStyle} key={index}></img> : <img src={imageURL} alt={this.props.description} style={imageStyle} key={index}></img>
          return image;
       })
    }
