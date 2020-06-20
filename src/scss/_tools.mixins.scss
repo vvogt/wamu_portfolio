@@ -81,31 +81,11 @@
       padding-right: $padding-lr3;
    }
 
-   @include mq(1400) {
+   @include mq(1625) {
      padding-left: $padding-lr4;
      padding-right: $padding-lr4;
    }
 
-}
-
-@mixin setLRPadding-preview($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
-  padding-left: calc(#{$padding-lr1} - 10px);
-  padding-right: calc(#{$padding-lr1} - 10px);
-
-   @include mq(600) {
-      padding-left: calc(#{$padding-lr2} - 10px);
-      padding-right: calc(#{$padding-lr2} - 10px);
-   }
-
-   @include mq(1150) {
-      padding-left: calc(#{$padding-lr3} - 10px);
-      padding-right: calc(#{$padding-lr3} - 10px);
-   }
-
-    @include mq(1400) {
-      padding-left: calc(#{$padding-lr4} - 10px);
-      padding-right: calc(#{$padding-lr4} - 10px);
-    }
 }
 
 @mixin buttonWithArrow($bgColor, $color) {

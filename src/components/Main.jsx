@@ -12,12 +12,14 @@ import Strawberry from '../images/top_layer/maasikas.png';
 import Okul from '../images/top_layer/okul.png';
 
 //PORTFOLIO IMAGES
-import EMpostcard from '../images/portfolio/EM_joulukaart-c-2016_210x192.jpg';
-import PMIllustration from '../images/portfolio/FB-aju.jpg';
-import DogIllustration1 from '../images/portfolio/koer.jpg';
-import DogIllustration2 from '../images/portfolio/Koer_A3.png';
-import Ekspress26 from '../images/portfolio/EE_syntar2015-b_275x355-5mm.jpg';
-import EPL110 from '../images/portfolio/EPL_synnip2ev_275x345.jpg';
+import EMpostcard from '../images/portfolio/EM-joulukaart-c-2016_551x936.jpg';
+import PMIllustration from '../images/portfolio/FB-aju_1511x850.jpg';
+import DogIllustration1 from '../images/portfolio/koer_636x900.jpg';
+import DogIllustration2 from '../images/portfolio/Koer2_636x900.png';
+import Ekspress26 from '../images/portfolio/EE-syntar2015_697x900.jpg';
+import EPL110 from '../images/portfolio/EPL-synnip2ev_717x900.jpg';
+
+//BACKGROUND
 
 
 class Main extends React.Component {
@@ -81,7 +83,6 @@ class Main extends React.Component {
    };
 
    renderPortfolioElements = (portfolioArray) => {
-      console.log(this.state.appearStates);
       return portfolioArray.map((element, index) => {
          return <ImageWithText
              title={element.title}
@@ -110,6 +111,12 @@ class Main extends React.Component {
             imageOrientation: 'vertical',
          },
          {
+            title: 'Eesti Ekspressi <br> kampaania',
+            description: 'Printreklaam, 2015',
+            images: [Ekspress26],
+            imageOrientation: 'vertical'
+         },
+         {
             title: 'Koerte <br> illustratsioonid',
             images: [DogIllustration1, DogIllustration2],
             imageOrientation: 'vertical',
@@ -118,12 +125,6 @@ class Main extends React.Component {
             title: 'Eesti Päevaleht 110',
             description: 'Logo + Kampaania 2015',
             images: [EPL110],
-            imageOrientation: 'vertical'
-         },
-         {
-            title: 'Eesti Ekspressi <br> kampaania',
-            description: 'Printreklaam, 2015',
-            images: [Ekspress26],
             imageOrientation: 'vertical'
          },
       ]
@@ -135,13 +136,19 @@ class Main extends React.Component {
              lastName="VOGT"
             />
 
-            {this.renderPortfolioElements(portfolio)}
+            <div className="portfolio">
+               {this.renderPortfolioElements(portfolio)}
+            </div>
 
             <div className="topLayer">
                <img src={Ball} className="ball rellax" data-rellax-speed="10" alt="abstract illustration"/>
                <img src={Bucket} className="bucket rellax" data-rellax-speed="12" alt="illustrated bucket"/>
                <img src={Strawberry} className="strawberry rellax" data-rellax-speed="12" alt="illustrated strawberry"/>
                <div className="okul rellax" data-rellax-speed="14"><img src={Okul} alt="illustrated owl" /></div>
+            </div>
+
+            <div className="background">
+
             </div>
          </div>
       )

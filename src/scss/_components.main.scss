@@ -45,3 +45,34 @@
       width: auto;
    }
 }
+
+.background {
+   width: 100%;
+   height: 100%;
+   
+   .sun {
+      width: 300px;
+      z-index: -5;
+      display: block;
+      top: 14vh;
+      left: 14vw;
+      position: absolute;
+   }
+
+   .cloud {
+      z-index: -4;
+      top: 50vh;
+      left: 25vw;
+      position: absolute;
+      width: 400px;
+   }
+}
+
+.portfolio {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+
+   @include setLRPadding();
+}

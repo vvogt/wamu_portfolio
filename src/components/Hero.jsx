@@ -1,6 +1,17 @@
 import React from 'react';
 
 class Hero extends React.Component {
+
+   renderBgDivs = (numOfDivs) => {
+      let bgDivs = []
+
+      for(let i = 0; i < numOfDivs; i++) {
+         bgDivs.push(<div className={`bgBar ${i % 2 === 0 ? 'blue' : 'white'}`} key={i}/>);
+      }
+
+      return bgDivs;
+   }
+
    render() {
       return(
          <main className="hero">
@@ -23,6 +34,16 @@ class Hero extends React.Component {
                   Kui oskad pakkuda mulle tööd veebiarendajana või soovitada mõnda ettevõtet kuhu kandideerida, siis anna julgelt teada.
                </p>
                <button className="rellax" data-rellax-speed="1.5">KIRJUTA MULLE</button>
+            </div>
+            <div className="hero__bg">
+               <div className="bgHalf_back"/>
+               <div className="bgBars_back">
+                  {this.renderBgDivs(21)}
+               </div>
+               <div className="bgHalf"/>
+               <div className="bgBars">
+                  {this.renderBgDivs(35)}
+               </div>
             </div>
          </main>
       )
