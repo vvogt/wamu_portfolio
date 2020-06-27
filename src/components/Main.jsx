@@ -19,7 +19,7 @@ import DogIllustration2 from '../images/portfolio/Koer2_636x900.png';
 import Ekspress26 from '../images/portfolio/EE-syntar2015_697x900.jpg';
 import EPL110 from '../images/portfolio/EPL-synnip2ev_717x900.jpg';
 
-//BACKGROUND
+//HELPERS
 
 
 class Main extends React.Component {
@@ -37,6 +37,7 @@ class Main extends React.Component {
          i !== 0 ? newState.appearStates.push(false) : newState.appearStates.push(true);
       }
       this.setState(newState);
+
    }
 
    componentWillUnmount() {
@@ -58,7 +59,7 @@ class Main extends React.Component {
          if (this.state.appearStates[i] !== appearArray[i]) {
             let newState = this.state;
             newState.appearStates[i] = !this.state.appearStates[i] 
-      
+
             this.setState(newState);
             break;
          }
@@ -99,25 +100,25 @@ class Main extends React.Component {
    render() {
       const portfolio = [
          {
-            title: 'Illustratsioon <br> artiklile Postimehes',
+            title: 'Illustratsioon artiklile Postimehes',
             description: '2018',
             images: [PMIllustration],
             imageOrientation: 'horizontal'
          },
          {
-            title: 'Ekspress Meedia <br> jõulukaart',
+            title: 'Ekspress Meedia jõulukaart',
             description: '2016',
             images: [EMpostcard],
             imageOrientation: 'vertical',
          },
          {
-            title: 'Eesti Ekspressi <br> kampaania',
+            title: 'Eesti Ekspressi kampaania',
             description: 'Printreklaam, 2015',
             images: [Ekspress26],
             imageOrientation: 'vertical'
          },
          {
-            title: 'Koerte <br> illustratsioonid',
+            title: 'Koerte illustratsioonid',
             images: [DogIllustration1, DogIllustration2],
             imageOrientation: 'vertical',
          },
@@ -147,9 +148,10 @@ class Main extends React.Component {
                <div className="okul rellax" data-rellax-speed="14"><img src={Okul} alt="illustrated owl" /></div>
             </div>
 
-            <div className="background">
+{/*             <Footer
+               eMail="vvogt@gmail.com"
 
-            </div>
+            /> */}
          </div>
       )
    }

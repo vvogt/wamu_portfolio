@@ -1,7 +1,7 @@
 .hero {
    @include setLRPadding();
    display: flex;
-   padding-top: 300px;
+   padding-top: 200px;
    padding-bottom: 300px;
    overflow: hidden;
 
@@ -154,7 +154,7 @@
    
       .bgHalf_back {
          z-index: -1;
-         height: 49%;
+         height: 420px;
          width: 100%;
          position: absolute;
          background-color: $blue;
@@ -162,7 +162,7 @@
 
       .bgHalf {
          z-index: -2;
-         height: 80%;
+         height: 683px;
          width: 100%;
          position: absolute;
          background-color: $darkBlue;
