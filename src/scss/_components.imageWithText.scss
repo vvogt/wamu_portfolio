@@ -6,6 +6,10 @@
    justify-content: center;
    align-items: flex-end;
    overflow: visible;
+   
+   &:first-of-type {
+      padding-top: 200px;
+   }
 
    @include mq(1000) {
       flex-direction: row;
