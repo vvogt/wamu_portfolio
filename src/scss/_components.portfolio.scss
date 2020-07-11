@@ -8,16 +8,6 @@
    flex-direction: column;
    justify-content: flex-start;
 
-   h2 {
-      color: $purple;
-      position: relative;
-      text-align: left;
-      left: 0px;
-      font-size: rem-calc(25px);
-      line-height: rem-calc(27px);
-      margin-bottom: 25px;
-   }
-
    .bgShape {
       width: 25%;
       height: calc(100% + 250px);
@@ -26,6 +16,20 @@
       border-radius: 400px 0px 0px 0px;
       position: absolute;
       background-color: $yellow;
+   }
+
+   .bgItemTop {
+      height: auto;
+      width: 12%;
+      position: fixed;
+      right: 0px;
+      top: 350px;
+      display: none;
+      
+      @include mq(1400) {
+         display: block;
+         z-index: 1;
+      }
    }
 
    &__gallery {

@@ -4,8 +4,7 @@ body {
   line-height: rem-calc(22);
   font-weight: 400;
   color: $black;
-  background-color: #fffff5;
-  /* background-color: $white; */
+  background-color: $white;
   margin: 0px;
   padding: 0px;
 }
@@ -45,6 +44,16 @@ h4,
 h5 {
   font-family: $font;
   font-weight: 700;
+}
+
+h2 {
+  color: $purple;
+  position: relative;
+  text-align: left;
+  left: 0px;
+  font-size: rem-calc(25px);
+  line-height: rem-calc(27px);
+  margin-bottom: 25px;
 }
 
 h1 {

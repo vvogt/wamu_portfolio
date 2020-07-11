@@ -5,6 +5,7 @@ import Hero from './Hero';
 import ImageWithText from './ImageWithText';
 import Portfolio from './Portfolio'
 import Rellax from 'rellax';
+import Contacts from './Contacts'
 
 //IMAGES
 import Ball from '../images/top_layer/ball.png';
@@ -31,7 +32,7 @@ class Main extends React.Component {
 
    componentDidMount() {
       this.rellax = new Rellax('.rellax');
-      window.addEventListener('scroll', this.handleScroll);
+      //window.addEventListener('scroll', this.handleScroll);
 
       let newState = this.state;
       for (let i = 0; i < this.state.refs.length; i++) {
@@ -42,7 +43,7 @@ class Main extends React.Component {
    }
 
    componentWillUnmount() {
-      window.removeEventListener('scroll', this.handleScroll)
+      //window.removeEventListener('scroll', this.handleScroll)
    }
    
    handleScroll = () => {
@@ -204,6 +205,12 @@ class Main extends React.Component {
                eMail="vvogt@gmail.com"
 
             /> */}
+
+            <Contacts
+               eMail="vahur@vvogt.ee"
+               linkedIn="www.linkedin.com/in/vahurvogt"
+               github="github.com/vvogt"
+            />
          </div>
       )
    }
