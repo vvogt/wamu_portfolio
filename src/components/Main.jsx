@@ -3,6 +3,7 @@ import React from 'react';
 //COMPONENTS
 import Hero from './Hero';
 import ImageWithText from './ImageWithText';
+import Portfolio from './Portfolio'
 import Rellax from 'rellax';
 
 //IMAGES
@@ -102,51 +103,102 @@ class Main extends React.Component {
          {
             title: 'Illustratsioon artiklile Postimehes',
             description: '2018',
-            images: [PMIllustration],
+            image: [PMIllustration],
             imageOrientation: 'horizontal'
          },
          {
             title: 'Ekspress Meedia jõulukaart',
             description: '2016',
-            images: [EMpostcard],
+            image: [EMpostcard],
             imageOrientation: 'vertical',
          },
          {
             title: 'Eesti Ekspressi kampaania',
             description: 'Printreklaam, 2015',
-            images: [Ekspress26],
+            image: [Ekspress26],
             imageOrientation: 'vertical'
          },
          {
             title: 'Koerte illustratsioonid',
-            images: [DogIllustration1, DogIllustration2],
+            image: [DogIllustration1],
             imageOrientation: 'vertical',
          },
          {
             title: 'Eesti Päevaleht 110',
             description: 'Logo + Kampaania 2015',
-            images: [EPL110],
+            image: [EPL110],
             imageOrientation: 'vertical'
          },
       ]
 
+      const cvItems = {
+         'work': [
+            {
+               years: '2010',
+               enterprise: 'Haljala Gümnaasium',
+               position: 'Inglise keele <br> asendusõpetaja'
+            },
+            {
+               years: '2012 – 2014',
+               enterprise: 'BrandCreator',
+               position: 'Disainer'
+            },
+            {
+               years: '2014 – 2017',
+               enterprise: 'Ekspress Meedia',
+               position: 'Disainer'
+            },
+            {
+               years: '2017 – 2018',
+               enterprise: 'Eesti Meedia',
+               position: 'Disainer'
+            },
+            {
+               years: '2019',
+               enterprise: 'Velvet',
+               position: 'Arendaja praktikant'
+            }
+         ],
+         'education': [
+            {
+               years: '1997 – 2009',
+               school: 'Haljala Gümnaasium'
+            },
+            {
+               years: '2010 – 2012',
+               school: 'Tallinna Polütehnikum',
+               specialty: 'Trükiettevalmistus'
+            },
+            {
+               years: '2018 – ...',
+               school: 'Tallinna Ülikool',
+               specialty: 'Informaatika'
+            }
+         ]
+      }
+
       return(
          <div className="wrapper" >
             <Hero
-             firstName="VAHUR"
-             lastName="VOGT"
+             firstName="Vahur"
+             lastName="Vogt"
+             cvItems={cvItems}
             />
 
-            <div className="portfolio">
-               {this.renderPortfolioElements(portfolio)}
-            </div>
+            <Portfolio
+               portfolioItems={portfolio}
+            />
 
-            <div className="topLayer">
+{/*             <div className="portfolio">
+               {this.renderPortfolioElements(portfolio)}
+            </div> */}
+
+{/*             <div className="topLayer">
                <img src={Ball} className="ball rellax" data-rellax-speed="10" alt="abstract illustration"/>
                <img src={Bucket} className="bucket rellax" data-rellax-speed="12" alt="illustrated bucket"/>
                <img src={Strawberry} className="strawberry rellax" data-rellax-speed="12" alt="illustrated strawberry"/>
                <div className="okul rellax" data-rellax-speed="14"><img src={Okul} alt="illustrated owl" /></div>
-            </div>
+            </div> */}
 
 {/*             <Footer
                eMail="vvogt@gmail.com"

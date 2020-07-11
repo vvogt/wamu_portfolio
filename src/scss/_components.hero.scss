@@ -1,57 +1,230 @@
 .hero {
-   @include setLRPadding();
-   display: flex;
-   padding-top: 100px;
-   padding-bottom: 100px;
-   overflow: hidden;
-   background-color: $darkBlue;
+   width: 100vw;
+   height: 90vh;
+   position: relative;
+   //background-color: $white;
 
-   &__left {
+   canvas {
+      position: absolute;
+      top: 0px;
+      z-index: 4;
+   }
+
+   .logo {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: auto;
+      height: 30px;
+      z-index: 10;
+   }
+
+   &__content {
       display: flex;
-      flex-direction: column;
-      width: 50%;
-      align-items: flex-end;
-      justify-content: center;
-      padding-right: 150px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 90%;
+      flex-direction: row;
 
-      h1 {
-         color: $lightBlue;
-         font-size: rem-calc(100);
+      &__title {
+         @include setLPadding();
+         padding-top: 225px;
+         width: 50%;
+         height: 100%;
+         display: inline;
+         position: relative;
+         background-color: $orange;
+         overflow: hidden;
+         border-radius: 0px 0px 200px 0px;
 
-         &:first-of-type {
+         .text {
             position: relative;
-            right: 50px;
+            z-index: 1;
+
+            h1 {
+               color: $purple;
+               font-size: rem-calc(150);
+               line-height: rem-calc(125);
+   
+               &:nth-of-type(2) {
+                  position: relative;
+                  left: 100px;
+               }
+            }
+   
+            p {
+               position: relative;
+               margin-top: 10px;
+               font-size: rem-calc(20);
+               font-weight: 200;
+               color: $white;
+               left: 110px;
+            }
+         }
+
+
+         .bgStars {
+            // width: 1579px;
+            width: 1579px;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            animation: rotate360 120s*2 infinite;
+            transform-origin: 0% 0%;
+         }
+         
+         .bgStars.bigger {
+            animation: rotate360 150s infinite;
+         }
+         
+         @keyframes rotate360 {
+            0% {
+               transform: rotate(0deg) translate(-50%, -50%);
+            }
+            100% {
+               transform: rotate(359deg) translate(-50%, -50%);
+            }
          }
       }
 
-      p {
+      &__cv {
+         width: 50%;
+         height: 100%;
          position: relative;
-         margin-top: 10px;
-         right: 25px;
-         font-size: rem-calc(20);
-         color: $white;
+         @include setRPadding();
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+
+
+         .timeline {
+            $fontSize: rem-calc(15);
+            $lineHeight: rem-calc(18);
+
+            position: relative;
+            display: flex;
+            padding-left: 200px;
+            flex-direction: column;
+
+            &.work:before {
+               height: calc(100% - (18px * 2) - 25px);
+            }
+
+            &:before {
+               position: absolute;
+               content: '';
+               width: 1px;
+               top: 30px;
+               height: calc(100% - (18px * 2) - 50px);
+               background-color: $purple;
+               transform: translateX(-45.5px);
+            }
+
+            &.work li {
+               margin-bottom: 0px;
+            }
+
+            li {
+               margin-bottom: 30px;
+               position: relative;
+               
+               &:before {
+                  position: relative;
+                  top: $lineHeight;
+                  left: -170px;
+                  color: $purple;
+                  content: attr(data-date);
+                  text-align: right;
+                  font-size: $fontSize;
+               }
+            }
+
+            p {
+               line-height: $lineHeight;
+               font-size: $fontSize;
+               color: $purple;
+   
+               &:first-of-type:before {
+                  position: absolute;
+                  display: inline-block;
+                  top: $lineHeight;
+                  left: -45px;    
+                  content: '';
+                  width: 10px;
+                  height: 10px;
+                  background-color: $purple;
+                  border-radius: 50%;
+                  transform: translate(-50%, 8px);
+               }
+            }
+
+            p.smaller {
+               font-weight: 700;
+               font-size: rem-calc(14px);
+               line-height: 16px;
+            }
+         }
+
+          .cvButtons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+            font-size: rem-calc(40px);
+            font-weight: 900;
+            color: $purple;
+            font-family: $font;
+            padding: 5px 5px;
+
+            button {
+               z-index: 4;
+               font-size: rem-calc(40px);
+               font-weight: 900;
+               color: $purple;
+               font-family: $font;
+               border-radius: 0px;
+               border: 0px;
+               padding: 5px 5px;
+
+               &:focus {
+                  outline: none;
+               }
+
+               &.inactive {
+                  opacity: 0.2;
+               }
+            }
+         }
       }
    }
-   &__right {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      width: 50%;
-      height: 600px;
 
-      p {
-         display: none;
-      }
+   
 
-      button {
-         background-color: transparent;
-         border: 2px solid $lightBlue;
-         border-radius: 50px;
-         padding: 25px 50px;
-         color: $white;
-         flex-grow: none;
-         box-sizing: border-box;
-      }
+   
+
+   button {
+      background-color: transparent;
+      border: 2px solid $lightBlue;
+      border-radius: 50px;
+      padding: 25px 50px;
+      color: $white;
+      flex-grow: none;
+      box-sizing: border-box;
    }
+
+   .bgHalf {
+      width: 100%;
+      z-index: -2;
+      //background-color: $yellow;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      // right: 0;
+   }
+
+   
 }

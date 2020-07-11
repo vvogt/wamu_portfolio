@@ -3,11 +3,10 @@
 ------------------------------------------ */
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700;800;900&display=swap');
+@import url("https://use.typekit.net/eah2euy.css");
 
-$font_h: 'Righteous', cursive;
+$font_h: 'blenny', sans-serif;
 $font: 'Raleway', sans-serif;
 
 $font_btn: rem-calc(15);
@@ -17,8 +16,9 @@ $black: #1d1d1d;
 $gray-dark: #777676;
 $gray-light: #f4f4f4;
 $white: #ffffff;
-$purple: #C900FB;
-$orange-drkr: #e65000;
+$purple: #752ceb;
+$orange: #fc6703;
+$yellow: #ffcd3e;
 $blue: #362469;
 $darkBlue: #2c1b59;
 $lightBlue: #00fffb;

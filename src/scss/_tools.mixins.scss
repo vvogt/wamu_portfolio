@@ -88,6 +88,42 @@
 
 }
 
+@mixin setRPadding($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
+  
+  padding-right: $padding-lr1;
+
+   @include mq(600) {
+      padding-right: $padding-lr2;
+   }
+
+   @include mq(1150) {
+      padding-right: $padding-lr3;
+   }
+
+   @include mq(1625) {
+     padding-right: $padding-lr4;
+   }
+
+}
+
+@mixin setLPadding($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
+  
+  padding-left: $padding-lr1;
+
+   @include mq(600) {
+      padding-left: $padding-lr2;
+   }
+
+   @include mq(1150) {
+      padding-left: $padding-lr3;
+   }
+
+   @include mq(1625) {
+     padding-left: $padding-lr4;
+   }
+
+}
+
 @mixin buttonWithArrow($bgColor, $color) {
   button {
     background-color: $bgColor;

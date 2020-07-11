@@ -8,7 +8,8 @@ import {
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-import MyHead from '../models/headModelNew.glb'
+import MyHead from '../models/head_v2.glb'
+import { Object3D } from "three";
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
 extend({ OrbitControls });
@@ -19,19 +20,22 @@ const Controls = () => {
 
    useFrame( state => orbitRef.current.update() );
 
-   console.log(camera);
+   console.log(gl.domElement);
 
    return (
       <orbitControls
          args={[ camera, gl.domElement ]}
          ref={orbitRef}
          autoRotate
-         autoRotateSpeed="0.1"
+         autoRotateSpeed="0.2"
          enableZoom={false}
-         maxAzimuthAngle={Math.PI / 4}
-         maxPolarAngle={Math.PI}
-         minAzimuthAngle={-Math.PI / 4}
-         minPolarAngle={0}
+         maxAzimuthAngle={0.5}
+         maxPolarAngle={1.5}
+         minAzimuthAngle={-0.5}
+         minPolarAngle={1.2}
+         enableKeys={false}
+         enablePan={false}
+         enableDamp
       />
    )
 }
@@ -61,32 +65,59 @@ function Head() {
    }); */
 
    const { camera } = useThree();
-   camera.position.set(1, 0.5, 3);
+   camera.position.set(0, 0, 4);
+
+   useFrame((event) => {
+      group.current.rotation.y = event.mouse.x/5;
+      group.current.rotation.x = -event.mouse.y/5;
+   });
 
    return (
       // Add a ref to the group. This gives us a hook to manipulate the properties of this geometry in the useFrame callback.
       <group ref={group}>
-         <mesh visible geometry={nodes.FaceBuilderHead.geometry}>
+         <mesh visible position={[0, 0, 0]} geometry={nodes.FaceBuilderHead.geometry}>
             <meshStandardMaterial
                attach="material"
                color="#fcba03"
-               roughness={0.6}
+               roughness={0.45}
                metalness={0}
+            />
+         </mesh>
+         <mesh visible position={[0.3, .33, 0.76]} rotation={[0, 0, 0]}>
+            <sphereGeometry attach="geometry" args={[0.15, 16, 16]} />
+            <meshStandardMaterial
+               attach="material"
+               color="white"
+               roughness={0}
+               metalness={0.2}
+            />
+         </mesh>
+         <mesh visible position={[-0.3, .33, 0.76]} rotation={[0, 0, 0]}>
+            <sphereGeometry attach="geometry" args={[0.15, 16, 16]} />
+            <meshStandardMaterial
+               attach="material"
+               color="white"
+               roughness={0}
+               metalness={0.2}
             />
          </mesh>
       </group>
    );
 }
 
+const updatePosition = () => {
+   console.log('update')
+}
+
 export default function HeadModel() {
    return (
-      <Canvas>
+      <Canvas className="3DCanvas">
          {/* <ambientLight intensity={0.25}/> */}
-         <Controls />
-         <directionalLight intensity={0.5} position={[10, 500, 10]}/>
+         {/* <Controls /> */}
+         <directionalLight intensity={0.5} position={[0, 0, 10]}/>
          <Suspense fallback={<Loading />}>
             <pointLight position={[10, 10, 10]} />
-            <Head />
+            <Head onMouseMove={updatePosition} />
          </Suspense>
       </Canvas>
    );

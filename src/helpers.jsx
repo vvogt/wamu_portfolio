@@ -10,17 +10,17 @@ export const insertBreak = text => {
 };
 
 export function setBgImage(imageUrl, fixedOrScroll, orientation) {
-   let imageWidth = orientation === 'vertical' ? '350px' : '100%';
-   let imageHeight = orientation === 'vertical' ? '700px' : '400px';
+   //let imageWidth = orientation === 'vertical' ? '350px' : '100%';
+   //let imageHeight = orientation === 'vertical' ? '700px' : '400px';
 
    let bgImageStyle = {
       backgroundImage: `url(${imageUrl})`,
       backgroundPosition: 'center',
-      backgroundSize: 'contain',
+      backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      width: imageWidth,
-      height: imageHeight,
-      backgroundAttachment: fixedOrScroll
+      //width: imageWidth,
+      //height: imageHeight,
+      backgroundAttachment: fixedOrScroll,
    };
 
    return bgImageStyle;
