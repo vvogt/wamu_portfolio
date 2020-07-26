@@ -4,8 +4,8 @@ import React from 'react';
 import Hero from './Hero';
 import ImageWithText from './ImageWithText';
 import Portfolio from './Portfolio'
-import Rellax from 'rellax';
 import Contacts from './Contacts'
+import AboutMe from './AboutMe'
 
 //IMAGES
 import Ball from '../images/top_layer/ball.png';
@@ -31,7 +31,6 @@ class Main extends React.Component {
    }
 
    componentDidMount() {
-      this.rellax = new Rellax('.rellax');
       //window.addEventListener('scroll', this.handleScroll);
 
       let newState = this.state;
@@ -190,21 +189,9 @@ class Main extends React.Component {
                portfolioItems={portfolio}
             />
 
-{/*             <div className="portfolio">
-               {this.renderPortfolioElements(portfolio)}
-            </div> */}
-
-{/*             <div className="topLayer">
-               <img src={Ball} className="ball rellax" data-rellax-speed="10" alt="abstract illustration"/>
-               <img src={Bucket} className="bucket rellax" data-rellax-speed="12" alt="illustrated bucket"/>
-               <img src={Strawberry} className="strawberry rellax" data-rellax-speed="12" alt="illustrated strawberry"/>
-               <div className="okul rellax" data-rellax-speed="14"><img src={Okul} alt="illustrated owl" /></div>
-            </div> */}
-
-{/*             <Footer
-               eMail="vvogt@gmail.com"
-
-            /> */}
+            <AboutMe
+            
+            />
 
             <Contacts
                eMail="vahur@vvogt.ee"

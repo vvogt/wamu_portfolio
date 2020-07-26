@@ -1,0 +1,93 @@
+.aboutMe {
+   //@include setLRPadding();
+   position: relative;
+   z-index: 3;
+   //background-color: #392e5c;
+   background-color: $yellow;
+   display: flex;
+   
+   box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+   0 2px 4px rgba(0,0,0,0.07), 
+   0 4px 8px rgba(0,0,0,0.07), 
+   0 8px 16px rgba(0,0,0,0.07),
+   0 16px 32px rgba(0,0,0,0.07), 
+   0 32px 64px rgba(0,0,0,0.07);
+   
+   h2, p {
+      color: $white;
+   }
+
+   p {
+      line-height: rem-calc(25px);
+      margin-bottom: 20px;
+   }
+   
+   .me {
+      @include setLPadding();
+      padding-bottom: 100px;
+      padding-top: 75px;
+      background-color: $yellow;
+      padding-right: 100px;
+      color: black;
+      width: 70%;
+
+      h2 {
+         color: $purple;
+      } 
+      p {
+         color: $black;
+      }
+   }
+   
+   .interests {
+      @include setRPadding();
+      border-radius: 0px 0px 0px 50px;
+      background-color: $white;
+      padding-bottom: 100px;
+      padding-top: 75px;
+      padding-left: 100px;
+
+      ul {
+         margin:0;
+         padding: 0;
+         text-indent: 0;
+         list-style-type: 0;
+         display: flex;
+         flex-wrap: wrap;
+         margin-bottom: 50px;
+      }
+
+      ul:nth-of-type(2) {
+         a {
+            background-color: $lightPurple;
+         }
+      }
+
+      h2:first-of-type {
+        margin-bottom: 0px; 
+      }
+
+      p:first-of-type {
+         font-size: rem-calc(12px);
+      }
+
+      li {
+         display: inline;
+         margin-bottom: 15px;
+         
+         a {
+            background-color: $orange;
+            padding: 5px 20px;
+            margin-right: 5px;
+            border-radius: 20px;
+            color: $white;
+         }
+      }
+
+      h2, p {
+         color: $purple;
+      }
+   }
+
+
+}
