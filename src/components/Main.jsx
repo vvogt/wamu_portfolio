@@ -11,7 +11,6 @@ import AboutMe from './AboutMe'
 import Ball from '../images/top_layer/ball.png';
 import Bucket from '../images/top_layer/2mber_transparent.png';
 import Strawberry from '../images/top_layer/maasikas.png';
-import Okul from '../images/top_layer/okul.png';
 
 //PORTFOLIO IMAGES
 import EMpostcard from '../images/portfolio/EM-joulukaart-c-2016_551x936.jpg';

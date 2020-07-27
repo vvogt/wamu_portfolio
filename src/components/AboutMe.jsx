@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Okul from '../images/top_layer/okul.png';
+
 export default function AboutMe() {
    return (
       <section className="about">
@@ -14,10 +16,11 @@ export default function AboutMe() {
                Praeguseks olengi kaks aastat õppinud Tallinna Ülikoolis informaatikat ning töötanud vabakutselise disainerina ja
                lisaks õpin vabal ajal omal käel tehnoloogiaid, milles näen tulevikupotensiaali.
             </p>
+            <img className="owlImage" src={Okul} alt="A weird owl illustration"/>
          </div>
          <div className="about__right">
             <h2>Mida ma oskan?</h2>
-            <p>"Oskan" on muidugi suhteline mõiste, kuna praktilist kogemust mul siiski palju ei ole</p>
+            <p>"Oskan" on muidugi suhteline mõiste, kuna praktilist kogemust mul siiski palju ei ole.</p>
             <ul className="interests">
                <li><a href="https://reactjs.org/">React</a></li>
                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
