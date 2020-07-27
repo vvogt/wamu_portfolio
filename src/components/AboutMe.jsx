@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function AboutMe() {
    return (
-      <section className="aboutMe">
-         <div className="me">
+      <section className="about">
+         <div className="about__left">
             <h2>Kes ma olen?</h2>
             <p>
                Olen 30 aastane värske arendaja, kellel on pea 9 aastat kogemust graafilise disainerina.
@@ -15,7 +15,7 @@ export default function AboutMe() {
                lisaks õpin vabal ajal omal käel tehnoloogiaid, milles näen tulevikupotensiaali.
             </p>
          </div>
-         <div className="interests">
+         <div className="about__right">
             <h2>Mida ma oskan?</h2>
             <p>"Oskan" on muidugi suhteline mõiste, kuna praktilist kogemust mul siiski palju ei ole</p>
             <ul className="interests">

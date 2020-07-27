@@ -95,6 +95,15 @@
             color: $purple;
             margin-top: 50px;
             transform: translate(15%, 0%);
+            border-radius: 50px;
+            padding: 25px 50px;
+            flex-grow: none;
+            box-sizing: border-box;
+            //box-shadow: 0px 20px 20px 20px;
+
+            &:hover {
+               background-color: lighten($yellow, 5%);
+            }
          }
 
          .text {
@@ -216,7 +225,7 @@
             flex-direction: column;
             
             @include mq(935) {
-               padding-left: 200px;
+               padding-left: 170px;
             }
 
             &.work:before {
@@ -282,7 +291,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
+            align-items: left;
             
             font-size: rem-calc(40px);
             font-weight: 900;
@@ -290,22 +299,51 @@
             font-family: $font;
             padding: 5px 5px;
 
-            button {
-               z-index: 4;
-               font-size: rem-calc(40px);
-               font-weight: 900;
-               color: $purple;
-               font-family: $font;
-               border-radius: 0px;
-               border: 0px;
-               padding: 5px 5px;
+            .divider {
+               margin: 0px 10px;
+            }
 
-               &:focus {
-                  outline: none;
+            .cvButton {
+               z-index: 4;
+               padding: 0px;
+               border: 0px;
+               background-color: transparent;
+
+               &.inactive > * {
+                  opacity: 0.2;
                }
 
-               &.inactive {
-                  opacity: 0.2;
+               &__content {
+                  /* Fixing the Safari bug for `<button>`s overflow */
+                  position: relative;
+
+                  font-size: rem-calc(40px);
+                  font-weight: 900;
+                  color: $purple;
+                  font-family: $font;
+                  border-radius: 0px;
+                  border: 0px;
+                  padding: 5px 5px;
+               }
+
+               /* All the states on the inner element */
+               &.inactive:hover > * {
+                 color: $orange;
+                 opacity: 1 !important;
+               }
+
+               &:active > * {
+                 color: $yellow;
+               }
+
+               :focus > * {
+                 box-shadow: 0 0 3px 7px lime;
+               }
+
+               /* Removing default outline only after we've added our custom one */
+               &:focus,
+               &__content:focus {
+                 outline: none;
                }
             }
          }
@@ -320,16 +358,6 @@
             border-radius: 400px 0px 200px 0px;
          }
       }
-   }
-
-   button {
-      background-color: transparent;
-      border: 2px solid $lightBlue;
-      border-radius: 50px;
-      padding: 25px 50px;
-      color: $white;
-      flex-grow: none;
-      box-sizing: border-box;
    }
 
    .bgHalf {

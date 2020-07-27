@@ -69,9 +69,17 @@ class Hero extends React.Component {
                </div>
                <div className="hero__content__cv">
                   <div className="cvButtons">
-                     <button className={`work ${this.state.cvCategory !== 'work' ? 'inactive' : ''}`} onClick={() => this.setCvCategory('work')}>TÖÖ</button>
-                     <div className="buttonDivider">/</div>
-                     <button className={`education ${this.state.cvCategory !== 'education' ? 'inactive' : ''}`} onClick={() => this.setCvCategory('education')}>HARIDUS</button>
+                     <button class={`cvButton ${this.state.cvCategory !== 'work' ? 'inactive' : ''}`} type="button" tabindex="0" onClick={() => this.setCvCategory('work')}>
+                        <span class="cvButton__content" tabindex="-1">
+                          TÖÖ
+                        </span>
+                     </button>
+                     <div className="divider">/</div>
+                     <button class={`cvButton ${this.state.cvCategory !== 'education' ? 'inactive' : ''}`} type="button" tabindex="0" onClick={() => this.setCvCategory('education')}>
+                        <span class="cvButton__content" tabindex="-1">
+                          HARIDUS
+                        </span>
+                     </button>
                   </div>        
                   <CV
                      activeCategory={this.state.cvCategory}
