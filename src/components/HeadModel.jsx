@@ -57,13 +57,10 @@ export default function HeadModel() {
       const glassesColor = '#752ceb'
       
       const { camera } = useThree();
-      console.log(window.innerWidth / 800);
       let headScale;
-   
-      if (window.innerWidth < 500) {
-         headScale = window.innerWidth / 400;
-      } else if (window.innerWidth < 680) {
-         headScale = window.innerWidth / 500;
+      
+      if (window.innerWidth < 680) {
+         headScale = 1.1;
       } else if (window.innerWidth < 1050) {
          headScale = 1;
       } else if (window.innerWidth < 1300) {
@@ -73,8 +70,6 @@ export default function HeadModel() {
       }
       
       camera.position.set(0, 0, 4);
-   
-      console.log(canvasRef);
    
       useFrame((event) => {
          delta += clock.getDelta();
