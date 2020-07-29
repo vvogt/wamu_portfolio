@@ -13,7 +13,6 @@ import { TextureLoader, Clock } from "three";
 
 import EyeTexture from '../images/background/eye_texture5.png'
 
-
 function Loading() {
    return (
       <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
@@ -29,9 +28,6 @@ function Loading() {
       </mesh>
    );
 }
-
-
-
 
 export default function HeadModel() {
    const canvasRef = useRef(null);
@@ -57,35 +53,28 @@ export default function HeadModel() {
       let delta = 0;
       // 30 fps
       let interval = 1 / 30;
-
-
    
       const glassesColor = '#752ceb'
-   
-      console.log(6000 / window.innerWidth);
-   
-      let cameraDistance;
-   
-      if (window.innerWidth < 950) {
-         cameraDistance = 4;
-      } else if (window.innerWidth < 1300) {
-         cameraDistance = 6000 / window.innerWidth;
-      } else {
-         cameraDistance = 4;
-      }
-   
+      
       const { camera } = useThree();
-      camera.position.set(0, 0, cameraDistance);
+      console.log(window.innerWidth / 800);
+      let headScale;
    
-      //const clock = new Clock();
-      //clock.start();
-
+      if (window.innerWidth < 500) {
+         headScale = window.innerWidth / 400;
+      } else if (window.innerWidth < 680) {
+         headScale = window.innerWidth / 500;
+      } else if (window.innerWidth < 1050) {
+         headScale = 1;
+      } else if (window.innerWidth < 1300) {
+         headScale = window.innerWidth / 1200;
+      } else {
+         headScale = 1;
+      }
+      
+      camera.position.set(0, 0, 4);
+   
       console.log(canvasRef);
-   
-/*       canvasRef.addEventListener('mouseMove', event => {
-         console.log('liigub');
-         rotateHead(event);
-      }) */
    
       useFrame((event) => {
          delta += clock.getDelta();
@@ -117,15 +106,10 @@ export default function HeadModel() {
          eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
          eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
          eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
-
-         /* if (group.current.rotation.x < -0.22|| group.current.rotation.x > 0.22 || group.current.rotation.y < -0.22 || group.current.rotation.y > 0.22 ) {
-            alert('x: ' + group.current.rotation.x + ' y: ' + group.current.rotation.y);
-         } */
       }
 
       return (
-         // Add a ref to the group. This gives us a hook to manipulate the properties of this geometry in the useFrame callback.
-         <group ref={group}>
+         <group ref={group} position={[0, 0, 0]} scale={[headScale, headScale, headScale]}>
             {/* HEAD */}
             <mesh visible position={[0, 0, 0]} geometry={nodes.FaceBuilderHead.geometry}>
                <meshStandardMaterial

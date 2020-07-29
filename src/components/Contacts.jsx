@@ -11,7 +11,7 @@ export default function Contacts() {
          <h2>Kontakt</h2>
          <div className="contacts__content">
             <div className="contacts__content__left">
-               <p>Kui sul on mulle tööd või midagi muud huvitavat pakkuda, siis võta muga ühendust:</p>
+               <p>Kui sul on pakkuda mulle tööd või midagi muud huvitavat, siis võta minuga ühendust:</p>
                <a href="mailto:vahur@vvogt.ee">vahur@vvogt.ee</a>
             </div>
             <div className="contacts__content__right">

@@ -46,6 +46,7 @@ export default function AboutMe() {
                <li><a href="https://godotengine.org/">Godot Engine</a></li>
             </ul>
          </div>
+         <div className="bgHalf"/>
       </section>
    )
 }

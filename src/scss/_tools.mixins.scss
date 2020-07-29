@@ -66,59 +66,68 @@
   }
 }
 
-@mixin setLRPadding($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
+$paddingQuery1: 600;
+$paddingQuery2: 1150;
+$paddingQuery3: 1625;
+
+$padding1: 5%;
+$padding2: 7%;
+$padding3: 6%;
+$padding4: 14%;
+
+@mixin setLRPadding($padding-lr1: $padding1, $padding-lr2: $padding2, $padding-lr3: $padding3, $padding-lr4: $padding4) {
   
   padding-left: $padding-lr1;
   padding-right: $padding-lr1;
 
-   @include mq(600) {
+   @include mq($paddingQuery1) {
       padding-left: $padding-lr2;
       padding-right: $padding-lr2;
    }
 
-   @include mq(1150) {
+   @include mq($paddingQuery2) {
       padding-left: $padding-lr3;
       padding-right: $padding-lr3;
    }
 
-   @include mq(1625) {
+   @include mq($paddingQuery3) {
      padding-left: $padding-lr4;
      padding-right: $padding-lr4;
    }
 
 }
 
-@mixin setRPadding($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
+@mixin setRPadding($padding-lr1: $padding1, $padding-lr2: $padding2, $padding-lr3: $padding3, $padding-lr4: $padding4) {
   
   padding-right: $padding-lr1;
 
-   @include mq(600) {
+   @include mq($paddingQuery1) {
       padding-right: $padding-lr2;
    }
 
-   @include mq(1150) {
+   @include mq($paddingQuery2) {
       padding-right: $padding-lr3;
    }
 
-   @include mq(1625) {
+   @include mq($paddingQuery3) {
      padding-right: $padding-lr4;
    }
 
 }
 
-@mixin setLPadding($padding-lr1: 5%, $padding-lr2: 2.6%, $padding-lr3: 6%, $padding-lr4: 14%) {
+@mixin setLPadding($padding-lr1: $padding1, $padding-lr2: $padding2, $padding-lr3: $padding3, $padding-lr4: $padding4) {
   
   padding-left: $padding-lr1;
 
-   @include mq(600) {
+   @include mq($paddingQuery1) {
       padding-left: $padding-lr2;
    }
 
-   @include mq(1150) {
+   @include mq($paddingQuery2) {
       padding-left: $padding-lr3;
    }
 
-   @include mq(1625) {
+   @include mq($paddingQuery3) {
      padding-left: $padding-lr4;
    }
 

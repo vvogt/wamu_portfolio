@@ -1,14 +1,18 @@
 .hero {
    width: 100vw;
-   height: 1400px;
+   height: 195vh;
    position: relative;
    //background-color: $white;
 
-   @include mq(535) {
+   @include mq(680) {
       height: 1200px;
    }
 
-   @include mq(950) {
+   @include mq(1050) {
+      height: 700px;
+   }
+   
+   @include mq(1300) {
       height: 800px;
    }
 
@@ -18,19 +22,19 @@
       right: 0px;
       z-index: 4;
       width: 100% !important;
-      height: 40% !important;
+      height: 30% !important;
       
-      @include mq(535) {
-         width: 40% !important;
+      @include mq(680) {
+         width: 50% !important;
          height: 50% !important;
       }
       
-      @include mq(700) {
+      @include mq(800) {
          width: 60% !important;
          height: 50% !important;
       }
       
-      @include mq(950) {
+      @include mq(1050) {
          width: 100% !important;
          height: 100% !important;
       }
@@ -64,7 +68,7 @@
       height: 90%;
       flex-direction: column;
 
-      @include mq(950) {
+      @include mq(1050) {
          flex-direction: row;
       }
 
@@ -82,7 +86,7 @@
          overflow: hidden;
          border-radius: 0px;
          
-         @include mq(950) {
+         @include mq(1050) {
             width: 50%;
             height: 100%;
             border-radius: 0px 0px 200px 0px;
@@ -93,13 +97,24 @@
             border: 0px;
             background-color: $yellow;
             color: $purple;
-            margin-top: 50px;
-            transform: translate(15%, 0%);
+            margin-top: 30px;
             border-radius: 50px;
-            padding: 25px 50px;
+            padding: 20px 40px;
+            font-size: rem-calc(15);
             flex-grow: none;
             box-sizing: border-box;
+            display: none;
             //box-shadow: 0px 20px 20px 20px;
+            
+            @include mq(680) {
+               transform: translate(-40%, 0%);
+               display: inline;
+            }
+            
+            @include mq(1050) {
+               transform: translate(15%, 0%);
+               margin-top: 50px;
+            }
 
             &:hover {
                background-color: lighten($yellow, 5%);
@@ -109,13 +124,13 @@
          .text {
             position: relative;
             z-index: 1;
-            transform: translateY(155px);
+            transform: translateY(200px);
             
-            @include mq(535) {
+            @include mq(680) {
                transform: translateX(-100px);
             }
 
-            @include mq(950) {
+            @include mq(1050) {
                transform: translateX(0px);
             }
 
@@ -128,14 +143,18 @@
                   position: relative;
                   left: 40px;
                   
-                  @include mq(535) {
-                     left: 100px;
+                  @include mq(680) {
+                     left: 75px;
+                  }
+
+                  @include mq(1150) {
+                     left: 87px;
                   }
                }
                
-               @include mq(375) {
-                  font-size: rem-calc(100);
-                  line-height: rem-calc(75);
+               @include mq(680) {
+                  font-size: rem-calc(110);
+                  line-height: rem-calc(90);
                }
                
                @include mq(1150) {
@@ -144,24 +163,36 @@
                }
 
                @include mq(1300) {
-                  font-size: rem-calc(150);
-                  line-height: rem-calc(125);
+                  font-size: rem-calc(130);
+                  line-height: rem-calc(110);
                }
             }
    
             p {
                position: relative;
                margin-top: 30px;
-               font-size: rem-calc(20);
+               font-size: rem-calc(17);
                font-weight: 200;
                color: $white;
                left: 0px;
                text-align: center;
-
-               @include mq(535) {
+               
+               @include mq(680) {
+                  font-size: rem-calc(13);
+                  margin-top: 5px;
+                  left: 95px;
                   text-align: left;
+               }
+               
+               @include mq(1150) {
+                  font-size: rem-calc(15.5);
+                  margin-top: 5px;
                   left: 110px;
-                  margin-top: 10px;
+               }
+               
+               @include mq(1360) {
+                  font-size: rem-calc(16);
+                  margin-top: 5px;
                }
             }
          }
@@ -197,6 +228,7 @@
          height: 50%;
          position: relative;
          padding-top: 100px;
+         padding-bottom: 100px;
          display: flex;
          justify-content: flex-start;
          align-items: center;
@@ -207,17 +239,21 @@
             padding-left: 100px;
          }
          
-         @include mq(950) {
+         @include mq(1050) {
             @include setRPadding();
             align-items: center;
             width: 50%;
             height: 100%;
-            padding-top: 200px;
+            padding-top: 170px;
+         }
+         
+         @include mq(1300) {
+            padding-top: 220px;
          }
 
          .timeline {
-            $fontSize: rem-calc(15);
-            $lineHeight: rem-calc(18);
+            $fontSize: rem-calc(13);
+            $lineHeight: rem-calc(16);
 
             position: relative;
             display: flex;
@@ -225,11 +261,15 @@
             flex-direction: column;
             
             @include mq(935) {
-               padding-left: 170px;
+               padding-left: 180px;
+
+               &.work {
+                  padding-left: 172px;
+               }
             }
 
             &.work:before {
-               height: calc(100% - (18px * 2) - 25px);
+               height: calc(100% - (18px * 2) - 15px);
             }
 
             &:before {
@@ -243,7 +283,7 @@
             }
 
             &.work li {
-               margin-bottom: 0px;
+               margin-bottom: -6px;
             }
 
             li {
@@ -265,6 +305,7 @@
                line-height: $lineHeight;
                font-size: $fontSize;
                color: $purple;
+               margin-bottom: 3px;
    
                &:first-of-type:before {
                   position: absolute;
@@ -276,14 +317,14 @@
                   height: 10px;
                   background-color: $purple;
                   border-radius: 50%;
-                  transform: translate(-50%, 8px);
+                  transform: translate(-50%, 10px);
                }
             }
 
             p.smaller {
                font-weight: 700;
-               font-size: rem-calc(14px);
-               line-height: 16px;
+               font-size: rem-calc(12);
+               line-height: rem-calc(14);
             }
          }
 
@@ -293,7 +334,7 @@
             justify-content: space-between;
             align-items: left;
             
-            font-size: rem-calc(40px);
+            font-size: rem-calc(35);
             font-weight: 900;
             color: $purple;
             font-family: $font;
@@ -317,7 +358,7 @@
                   /* Fixing the Safari bug for `<button>`s overflow */
                   position: relative;
 
-                  font-size: rem-calc(40px);
+                  font-size: rem-calc(36);
                   font-weight: 900;
                   color: $purple;
                   font-family: $font;
@@ -346,16 +387,6 @@
                  outline: none;
                }
             }
-         }
-
-         .bgShape {
-            position: absolute;
-            right: 0px;
-            top: 550px;
-            width: 400px;
-            height: 400px;
-            background-color: $yellow;
-            border-radius: 400px 0px 200px 0px;
          }
       }
    }
