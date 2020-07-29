@@ -88,7 +88,6 @@ class Hero extends React.Component {
 {/*                   <div className="bgShape"/> */}
                </div>
             </div>
-            <div className="bgHalf"></div>
          </main>
       )
    }
