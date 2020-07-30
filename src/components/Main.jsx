@@ -9,15 +9,6 @@ import AboutMe from './AboutMe'
 
 //IMAGES
 
-
-//PORTFOLIO IMAGES
-import EMpostcard from '../images/portfolio/EM-joulukaart-c-2016_551x936.jpg';
-import PMIllustration from '../images/portfolio/FB-aju_1511x850.jpg';
-import DogIllustration1 from '../images/portfolio/koer_636x900.jpg';
-import DogIllustration2 from '../images/portfolio/Koer2_636x900.png';
-import Ekspress26 from '../images/portfolio/EE-syntar2015_697x900.jpg';
-import EPL110 from '../images/portfolio/EPL-synnip2ev_717x900.jpg';
-
 //HELPERS
 
 
@@ -95,38 +86,6 @@ class Main extends React.Component {
    }
 
    render() {
-      const portfolio = [
-         {
-            title: 'Illustratsioon artiklile Postimehes',
-            description: '2018',
-            image: [PMIllustration],
-            imageOrientation: 'horizontal'
-         },
-         {
-            title: 'Ekspress Meedia jõulukaart',
-            description: '2016',
-            image: [EMpostcard],
-            imageOrientation: 'vertical',
-         },
-         {
-            title: 'Eesti Ekspressi kampaania',
-            description: 'Printreklaam, 2015',
-            image: [Ekspress26],
-            imageOrientation: 'vertical'
-         },
-         {
-            title: 'Koerte illustratsioonid',
-            image: [DogIllustration1],
-            imageOrientation: 'vertical',
-         },
-         {
-            title: 'Eesti Päevaleht 110',
-            description: 'Logo + Kampaania 2015',
-            image: [EPL110],
-            imageOrientation: 'vertical'
-         },
-      ]
-
       const cvItems = {
          'work': [
             {
@@ -181,13 +140,9 @@ class Main extends React.Component {
              cvItems={cvItems}
             />
 
-            <Portfolio
-               portfolioItems={portfolio}
-            />
+            <Portfolio/>
 
-            <AboutMe
-            
-            />
+            <AboutMe/>
 
             <Contacts
                eMail="vahur@vvogt.ee"
