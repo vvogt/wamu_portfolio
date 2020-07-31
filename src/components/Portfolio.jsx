@@ -71,7 +71,7 @@ export default function Portfolio(props) {
       {
          title: 'Iga Eestlane Loeb',
          year: '2016',
-         description: 'Kampaania printreklaamide loovidee ja kujundus. Eesti Päevalehe ja Delfi kampaania, uppumis- ja liiklussurmade vähendamiseks. Kampaania jooksis läbi terve suve ja reklaamil loendasime selle aasta hetkelist liiklus- ja uppumissurmade arvu Eestis. Kampaania pidi lugejat mõjutama läbi korduste – iga järgmise korraga, kus lugeja reklaami nägi, oli ohvrite arv kasvanud.',
+         description: 'Kampaania printreklaamide loovidee ja kujundus. Eesti Päevalehe ja Delfi kampaania, uppumis- ja liiklussurmade vähendamiseks. Kampaania jooksis läbi terve suve ja reklaamil loendasime selle aasta hetkelist liiklus- ja uppumissurmade arvu Eestis. Kampaania mõjus lugejale läbi korduste – iga järgmise korraga, kus lugeja reklaami nägi, oli ohvrite arv kasvanud.',
          images: [IELMock, IEL2, IEL1],
       },
       {
