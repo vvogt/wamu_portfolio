@@ -1,0 +1,304 @@
+.lightBox {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      display: inline-block;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      @include setLRPadding();
+      padding-top: 12vh;
+      padding-bottom: 12vh;
+      overflow: scroll;
+      
+      &__bg {
+         background-color: $white;
+         width: 100vw;
+         height: 100vh;
+         z-index: 5;
+         position: fixed;
+         top: 0;
+         left: 0;
+         opacity: .95;
+      }
+
+      &__content {
+         z-index: 6;
+         width: 100%;
+         position: relative;
+         display: flex;
+         justify-content: flex-end;
+         flex-direction: column;
+         
+         @include mq(1050) {
+            flex-direction: row;
+         }
+         
+         &__text {
+            width: 100%;
+            position: relative;
+            padding-right: 30px;
+            padding-bottom: 50px;
+
+            //$paddingQuery1: 600;
+            //$paddingQuery2: 1150;
+            //$paddingQuery3: 1625;
+//
+            //$padding1: 5%;
+            //$padding2: 7%;
+            //$padding3: 6%;
+            //$padding4: 14%;
+
+            @include mq(1050) {
+               width: 17.2vw;
+               position: fixed;
+               left: 7vw;
+            }
+
+            @include mq(1150) {
+               width: 17.6vw;
+               left: 6vw;
+            }
+
+            @include mq(1625) {
+               left: 12vw;
+            }
+         }
+      }
+
+      .arrow {
+         width: 40px;
+         height: auto;
+         z-index: 6;
+         position: fixed;
+         transform: translate(0%, -50%);
+         top: 50%;
+         display: none;
+
+         @include mq(1050) {
+            display: inline;
+         }
+
+      }
+
+      .arrow.right {
+         right: 30px;
+      }
+      
+      .arrow.left {
+         transform: translate(0%, -50%) rotate(180deg);
+         left: 30px;
+      }
+
+      
+      &__content__images {
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-start;
+         align-items: flex-end;
+         flex-wrap: wrap;
+         position: relative;
+         right: 0px;
+         
+         @include mq(1050) {
+            width: 80%;
+            height: 80vh;
+            justify-content: flex-start;
+            align-items: flex-end;
+         }
+
+         img {
+            width: 100%;
+            height: auto;
+
+            margin-left: 0px;
+            margin-bottom: 40px;
+
+            @include mq(1050) {
+               //margin-left: 10px;
+               margin-bottom: 10px;
+
+               width: 49%;
+               height: auto;
+            }
+         }
+
+         //vee all kuu peal
+         &.id0 {
+
+            @include mq(1050) {
+               height: 65vw;
+            }
+
+            @include mq(1650) {
+               height: 55vw;
+            }
+            
+            @include mq(2021) {
+               height: 55vw;
+            }
+         }
+
+         //megusto
+         &.id1 {
+            @include mq(1050) {
+               height: 85vw;
+            }
+
+            @include mq(1420) {
+               height: 85vw;
+            }
+            @include mq(1620) {
+               height: 75vw;
+            }
+         }
+         
+         //epl110
+         &.id2 {
+            @include mq(1050) {
+               height: 75vw;
+            }
+            @include mq(1625) {
+               height: 62vw;
+            }
+         }
+         
+         //Jive Turkey
+         &.id3 {
+            @include mq(1050) {
+               height: 60vw;
+            }
+            @include mq(1625) {
+               height: 55vw;
+            }
+            @include mq(1625) {
+               height: 50vw;
+            }
+         }
+         
+         /* //CSS for individual image galleries
+         @include mq(1050) {
+
+            //Vee all kuu peal:
+            &.id0 {
+               background-color: rgb(190, 41, 41);
+
+               img:nth-of-type(1) {
+                  width: auto;
+                  height: 39vh;
+               }
+
+               img:nth-of-type(2) {
+                  width: auto;
+                  height: 39vh;
+                  margin-left: 1vh;
+               }
+
+               img:nth-of-type(3) {
+                  width: auto;
+                  height: 36vh;
+               }
+            }
+
+            //MeGusto
+            &.id1 {
+               img {
+                  height: 300px;
+                  width: auto;
+               }
+            }
+
+            //EPL 110
+            &.id2 {
+               
+               img:nth-of-type(1) {
+                  //order: 2;
+               }
+               
+               img:nth-of-type(1) {
+                  height: auto;
+                  max-width: 650px;
+               }
+
+               img:nth-of-type(2) {
+                  height: 600px;
+                  width: auto;
+               }
+
+               img:nth-of-type(3) {
+                  width: 400px;
+                  height: auto;
+               }
+            }
+
+            //Jive Turkey
+            &.id3 {
+               img:nth-of-type(1) {
+                  height: 450px;
+                  width: auto;
+               }
+
+               img:nth-of-type(2) {
+                  height: 400px;
+                  width: auto;
+               }
+
+               img:nth-of-type(3) {
+                  height: auto;
+                  width: 500px;
+               }
+            }
+
+            //Iga eestlane loeb
+            &.id4 {
+               img:nth-of-type(1) {
+                  height: 450px;
+                  width: auto;
+               }
+
+               img:nth-of-type(2) {
+                  height: 450px;
+                  width: auto;
+               }
+
+               img:nth-of-type(3) {
+                  height: 450px;
+                  width: auto;
+               }
+            }
+
+            //CAREFAB
+            &.id5 {
+               align-items: flex-start;
+
+               img:nth-of-type(1) {
+                  height: 350px;
+                  width: auto;
+               }
+
+               img:nth-of-type(2) {
+                  height: 350px;
+                  width: auto;
+               }
+
+               img:nth-of-type(3) {
+                  height: 400px;
+                  width: auto;
+               }
+
+               img:nth-of-type(4) {
+                  height: 270px;
+                  width: auto;
+               }
+               
+               img:nth-of-type(5) {
+                  height: 270px;
+                  width: auto;
+               }
+            }
+         } */
+      }
+   }

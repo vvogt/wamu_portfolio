@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react'
-import {throttle} from '../helpers'
+import React, {useEffect, useRef} from 'react'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import Arrow from '../images/svg/arrow_right.svg'
 
 export default function LightBox(props) {
+   const lightBoxRef = useRef(null);
+
    useEffect(() => {
-      console.log('adding');
       window.addEventListener('keydown', handlePress);
+      const currentLightBox = lightBoxRef.current;
+      disableBodyScroll(currentLightBox);
       
       return () => {
-         console.log('removing');
-         window.removeEventListener('keydown', handlePress)
+         window.removeEventListener('keydown', handlePress);
+         clearAllBodyScrollLocks();
       }
    });
 
@@ -33,16 +36,28 @@ export default function LightBox(props) {
       props.setItem(nextIndex);
    }
 
-   const swapImageKey = (event) => {
-      console.log(event);
+   const renderImages = (item) => {
+      //style={setBgImage(item.images[index], 'scroll', '250px')}
+      return item.images.map((image, index) => {
+         return <img src={item.images[index]} alt="" key={index}/>
+      })
    }
 
    return (
-      <div className={`lightBox ${props.activeItem ? 'visible' : ''}`} >
+      <div className={`lightBox ${props.activeItem ? 'visible' : ''} ${props.activeItem}`} ref={lightBoxRef}>
          <div className="lightBox__bg" onClick={() => props.setItem(false)}/>
-         <img src={Arrow} className="arrow left" alt="left gallery arrow" onClick={() => swapImage(props.items.length, props.activeItem, -1)} onKeyPress={() => swapImageKey()} />
-         <img src={props.items[props.activeItem].image} className={`${props.items[props.activeItem].imageOrientation}`} alt={props.items[props.activeItem].title} onClick={() => props.setItem(false)}/>
-      <img src={Arrow} className="arrow right" alt="right gallery arrow" onClick={() => swapImage(props.items.length, props.activeItem, 1)} onKeyPress={() => swapImageKey()} />
+         <img src={Arrow} className="arrow left" alt="left gallery arrow" onClick={() => swapImage(props.items.length, props.activeItem, -1)} />
+         <div className="lightBox__content">
+            <div className="lightBox__content__text">
+               <h2>{props.items[props.activeItem].title}</h2>
+               {props.items[props.activeItem].year && <p className="year">{props.items[props.activeItem].year}</p>}
+               <p className="description">{props.items[props.activeItem].description}</p>
+            </div>
+            <div className={`lightBox__content__images id${props.activeItem}`}>
+               {renderImages(props.items[props.activeItem])}
+            </div>
+         </div>
+         <img src={Arrow} className="arrow right" alt="right gallery arrow" onClick={() => swapImage(props.items.length, props.activeItem, 1)} />
       </div>
    )
 }

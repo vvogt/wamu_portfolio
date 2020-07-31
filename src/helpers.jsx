@@ -34,3 +34,10 @@ export const debounce = (callback, wait) => {
       timeout = setTimeout(() => callback.apply(context, args), wait);
    };
 }
+
+export const replaceSpaces = (string) => {
+   const searchRegExp = / /g;
+   const stringNew = string.replace(searchRegExp, "-");
+   
+   return `/${stringNew.toLowerCase()}`
+}
