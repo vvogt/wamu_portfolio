@@ -75,9 +75,9 @@ class Hero extends React.Component {
 
    render() {
       return(
-         <main className="hero" ref={this.heroRef}>
+         <main className="hero">
             {this.renderLogo()}
-            <HeadModel hero={this.heroRef}/>
+            <HeadModel hero={this.props.thisRef}/>
             <div className="hero__content">
                <div className="hero__content__title">
                   {/* <div className="deviceOrientation">

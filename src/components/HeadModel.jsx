@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import {
    Canvas,
    useLoader,
@@ -12,6 +12,20 @@ import Glasses from '../models/vv_glasses.glb'
 import { TextureLoader, Clock } from "three";
 
 import EyeTexture from '../images/background/eye_texture5.png'
+
+//DETECT IF USER IS ON IOS
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
 
 function Loading() {
    return (
@@ -29,7 +43,7 @@ function Loading() {
    );
 }
 
-export default function HeadModel() {
+export default function HeadModel(props) {
    const canvasRef = useRef(null);
 
    function degToEuler(array) {
@@ -80,10 +94,32 @@ export default function HeadModel() {
             delta = delta % interval;
          }
       });
+
+      let mouseY;
+      let mouseX;
    
       const rotateHead = (event) => {
          newRotY = event.mouse.x/5;
          newRotX = -event.mouse.y/5;
+         mouseX = (event.mouse.x * window.innerWidth) / 2
+         mouseY = (event.mouse.y * window.window.innerHeight) / 2
+
+         
+         if (newRotX < 0.25) {
+            group.current.rotation.x = newRotX;
+            group.current.rotation.y = newRotY;
+            
+            //ROTATE EYES
+            eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
+            eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
+            eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
+            eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
+         } else {
+            window.location.reload()
+         }
+
+/*          group.current.rotation.x = newRotX;
+         group.current.rotation.y = newRotY;
    
          //TO MAKE SURE THE ROTATION CAN NOT BE TOO HIGH
          if (newRotX > 0.2) {newRotX = 0.2}
@@ -99,7 +135,7 @@ export default function HeadModel() {
          eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
          eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
          eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
-         eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
+         eyeR.current.rotation.x = -0.05 + newRotX * 1.6; */
       }
 
       return (
@@ -181,8 +217,34 @@ export default function HeadModel() {
       );
    }
 
+   const grantPermission = () => {
+    // feature detect
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', (event) => this.handleOrientation(event));
+          }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+   }
+
+   const handleTouch = event => {
+      iOS() && grantPermission();
+   }
+
+   const thisCanvas = useRef(null);
+   const [nsm, setNsm] = useState(null);
+
+   const doIt = () => {
+      this.forceUpdate();
+   } 
+
    return (
-      <Canvas className="canvas3D" resize={{ scroll: false }} >
+      <Canvas className="canvas3D" resize={{ scroll: false }} onClick={() => handleTouch()}>
          <directionalLight intensity={0.5} position={[0, 0, 10]}/>
          <Suspense fallback={<Loading />}>
             <pointLight position={[10, 10, 10]} />

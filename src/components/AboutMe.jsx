@@ -19,6 +19,15 @@ export default function AboutMe() {
             <img className="owlImage" src={Okul} alt="A weird owl illustration"/>
          </div>
          <div className="about__right">
+            <h2>Milles ma olen väga heal tasemel?</h2>
+            <ul className="bestSkills">
+               <li><a href="https://www.adobe.com/creativecloud.html">Illustrator</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html">Photoshop</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html">InDesign</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html">AfterEffects</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html">Adobe XD</a></li>
+               <li><a href="https://www.figma.com/">Figma</a></li>
+            </ul>
             <h2>Mida ma oskan?</h2>
             <p>"Oskan" on muidugi suhteline mõiste, kuna praktilist kogemust mul siiski palju ei ole.</p>
             <ul className="interests">
@@ -30,13 +39,7 @@ export default function AboutMe() {
                <li><a href="https://jquery.com/">jQuery</a></li>
                <li><a href="https://www.php.net/">PHP</a></li>
                <li><a href="https://webpack.js.org/">webpack</a></li>
-               <li><a href="https://www.adobe.com/creativecloud.html">Illustrator</a></li>
-               <li><a href="https://www.adobe.com/creativecloud.html">Photoshop</a></li>
-               <li><a href="https://www.adobe.com/creativecloud.html">InDesign</a></li>
-               <li><a href="https://www.adobe.com/creativecloud.html">AfterEffects</a></li>
-               <li><a href="https://www.adobe.com/creativecloud.html">Adobe XD</a></li>
                <li><a href="https://www.sketch.com/">Sketch</a></li>
-               <li><a href="https://www.figma.com/">Figma</a></li>
             </ul>
             <h2>Mida ma mõne aja pärast oskan?</h2>
             <ul>
