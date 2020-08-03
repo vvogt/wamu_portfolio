@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import Arrow from '../images/svg/arrow_right.svg'
+import CloseIcon from '../images/svg/close_icon.svg'
 
 export default function LightBox(props) {
    const lightBoxRef = useRef(null);
@@ -46,6 +47,7 @@ export default function LightBox(props) {
    return (
       <div className={`lightBox ${props.activeItem ? 'visible' : ''} ${props.activeItem}`} ref={lightBoxRef}>
          <div className="lightBox__bg" onClick={() => props.setItem(false)}/>
+         <img src={CloseIcon} className="closeBtn" alt="close" onClick={() => props.setItem(false)}/>
          <img src={Arrow} className="arrow left" alt="left gallery arrow" onClick={() => swapImage(props.items.length, props.activeItem, -1)} />
          <div className="lightBox__content">
             <div className="lightBox__content__text">

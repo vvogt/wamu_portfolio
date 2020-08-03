@@ -77,7 +77,6 @@ export default function HeadModel() {
          if (delta  > interval) {
             // The draw or time dependent code are here
             rotateHead(event);
-            console.log('sec')
             delta = delta % interval;
          }
       });
@@ -184,7 +183,6 @@ export default function HeadModel() {
 
    return (
       <Canvas className="canvas3D" resize={{ scroll: false }} >
-         {console.log(canvasRef)}
          <directionalLight intensity={0.5} position={[0, 0, 10]}/>
          <Suspense fallback={<Loading />}>
             <pointLight position={[10, 10, 10]} />

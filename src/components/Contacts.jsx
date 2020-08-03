@@ -12,7 +12,7 @@ export default function Contacts() {
          <div className="contacts__content">
             <div className="contacts__content__left">
                <p>Kui sul on pakkuda mulle tööd või midagi muud huvitavat, siis võta minuga ühendust:</p>
-               <a href="mailto:vahur@vvogt.ee">vahur@vvogt.ee</a>
+               <a href="mailto:info@vvogt.ee">info@vvogt.ee</a>
             </div>
             <div className="contacts__content__right">
                <a href="http://facebook.com/spacekakez"><img src={FbLogo} alt="Facebook page" /></a>
