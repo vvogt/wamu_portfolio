@@ -8,8 +8,49 @@ import Stars2 from '../images/svg/stars_bigger.svg';
 class Hero extends React.Component {
    constructor() {
       super();
-      this.state = { cvCategory: 'work', orientation: [] }; 
+      this.state = { cvCategory: 'work', logoPurple: false}; 
       this.heroRef = React.createRef();
+      this.logoRef = React.createRef();
+      
+      this.lastTime = null;
+   }
+
+   myThrottle = (div1, div2) => {
+      if (!this.lastTime) {
+         let dateNow = new Date()
+         this.lastTime = dateNow.getTime();
+      }
+
+      let dateNow2 = new Date();
+      let timeNow = dateNow2.getTime();
+
+      if(timeNow - this.lastTime > 300) {
+         this.isColliding(div1, div2);
+         this.lastTime = timeNow; 
+      }
+   }
+
+   isColliding = ( div1, div2 ) => {
+      
+
+	   let bounding1 = div1.getBoundingClientRect();
+      let bounding2 = div2.getBoundingClientRect();
+      
+      if (bounding1.bottom < bounding2.bottom) {
+         if(!div2.classList.contains("purple")) {
+            div2.classList.add("purple");
+         }
+      } else {
+         if(div2.classList.contains("purple")) {
+            div2.classList.remove("purple");
+         }
+      }
+   };
+
+   componentDidMount() {
+      if (window.innerWidth > 1625) {
+         window.addEventListener("scroll", () => this.myThrottle(this.heroRef.current, this.logoRef.current))
+      }
    }
 
 
@@ -21,7 +62,7 @@ class Hero extends React.Component {
         console.log("Sorry, your browser doesn't support Device Orientation");
       }
    }
-   
+
    renderBgDivs = (numOfDivs) => {
       let bgDivs = []
       
@@ -33,11 +74,16 @@ class Hero extends React.Component {
    }
 
    setCvCategory = (category) => {
-      this.setState({cvCategory: category})
+      let newState = this.state;
+      newState.cvCategory = category;
+
+      this.setState(newState);
    }
 
    renderLogo = () => {
-      return <svg className="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.3 51.74"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polyline className="cls-1" points="0 9.36 17.86 9.36 31.17 36.48 39.22 18.62 47.63 36.13 60.94 9.01 161.3 9.01" /><rect className="cls-1" x="65.14" y="18.81" width="30.92" height="16.81" rx="8.4" /><rect className="cls-1" x="103.76" y="18.81" width="30.92" height="16.81" rx="8.4" /><path className="cls-1" d="M134.68,14.53v27.1a9.11,9.11,0,0,1-9.11,9.11" /><line className="cls-1" x1="145.39" y1="35.62" x2="145.39" /></g></g></svg>
+      return <svg className={`logo ${this.state.logoPurple ? 'purple' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 49.14" ref={this.logoRef}><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polyline className="cls-1" points="132 13.53 49.9 13.53 37.83 38.13 29.43 20.62 21.37 38.48 9.07 13.41 0 13.41"/><rect className="cls-1" x="85.97" y="18.81" width="28.92" height="16.81" rx="8.4"/><path className="cls-1" d="M114.88,17.53v21.1a9.1,9.1,0,0,1-9.1,9.11"/><rect className="cls-1" x="51.97" y="18.81" width="28.92" height="16.81" rx="8.4"/><line className="cls-1" x1="121.59" y1="35.62" x2="121.59"/></g></g></svg>
+
+/*       return <svg className={`logo ${this.state.logoPurple ? 'purple' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.3 51.74" ref={this.logoRef}><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polyline className="cls-1" points="0 9.36 17.86 9.36 31.17 36.48 39.22 18.62 47.63 36.13 60.94 9.01 161.3 9.01" /><rect className="cls-1" x="65.14" y="18.81" width="30.92" height="16.81" rx="8.4" /><rect className="cls-1" x="103.76" y="18.81" width="30.92" height="16.81" rx="8.4" /><path className="cls-1" d="M134.68,14.53v27.1a9.11,9.11,0,0,1-9.11,9.11" /><line className="cls-1" x1="145.39" y1="35.62" x2="145.39" /></g></g></svg> */
    }
 
    grantPermission = () => {
@@ -57,9 +103,9 @@ class Hero extends React.Component {
 
    render() {
       return(
-         <main className="hero">
+         <main className="hero" ref={this.heroRef}>
             {this.renderLogo()}
-            <HeadModel hero={this.props.thisRef}/>
+            <HeadModel/>
             <div className="hero__content">
                <div className="hero__content__title">
                   {/* <div className="deviceOrientation">

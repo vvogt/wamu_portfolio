@@ -40,8 +40,8 @@
          text-align: center;
          
          @include mq(875) {
-            width: 75%;
-            border-right: 1px solid $lightPurple;
+            width: 50%;
+            //border-right: 1px solid $lightPurple;
             text-align: left;
             padding-right: 100px;
          }
@@ -68,21 +68,18 @@
          align-items: center;
          padding-top: 30px;
          padding-bottom: 27px;
-
+         
          @include mq(875) {
             padding: 0px;
             padding-bottom: 0px;
+            justify-content: flex-end;
          }
 
          a:not(:last-of-type) {
-            margin-right: 5%;
-            
-            @include mq(1024) {
-               margin-right: 6%;
-            }
+            margin-right: 30px;
 
-            @include mq(1200) {
-               margin-right: 7%;
+            @include mq(875) {
+               margin-right: 20px;
             }
          }
 

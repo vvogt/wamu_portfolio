@@ -1,5 +1,6 @@
 {
   "name": "wamu_portfolio",
+  "homepage": "https://www.vvogt.ee",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

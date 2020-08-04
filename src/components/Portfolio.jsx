@@ -47,35 +47,35 @@ export default function Portfolio(props) {
       {
          title: 'Vee all kuu peal 2',
          year: '2020',
-         description: 'Plakati ja akende kujundus Maarja Mäemetsa ja Rait lõhmuse fotonäitusele "Vee all / kuu peal 2".',
+         description: 'Maarja Mäemetsa ja Rait Lõhmuse fotonäituse "Vee all / kuu peal 2" plakati ja akende disain.',
          images: [VAKP2Poster, VAKP2Mock, VAKP2Windows],
       },
       {
          title: 'Megusto',
-         description: 'Šokolaadi ja maiustuste kohvik Megusto logo ja kujundused.',
+         description: 'Šokolaadi ja maiustuste kohviku Megusto logo ja muude elementide disain.',
          images: [MGCups, MGChocolate, MGLogo, MGSign, MGWindows],
       },
       {
          title: 'Eesti Päevaleht 110',
          year: '2015',
-         description: 'Eesti Päevalehe 110 juubeli logo ja printreklaami kujundus.',
+         description: 'Eesti Päevalehe 110 juubelilogo ja printreklaami disain.',
          images: [EPLMock, EPLLogo, EPLPrint],
       },
       {
          title: 'Jive Turkey',
-         description: 'Tugevalt blacksploitation filmidest ja funkist inspireeritud plakatid ürituste sarjale "Jive Turkey"',
+         description: 'Üritustesarja “Jive Turkey” tugevalt blacksploitation filmidest ja funkist inspireeritud plakatid.',
          images: [JT1, JT2, JT3],
       },
       {
          title: 'Iga Eestlane Loeb',
          year: '2016',
-         description: 'Kampaania printreklaamide loovidee ja kujundus. Eesti Päevalehe ja Delfi kampaania, uppumis- ja liiklussurmade vähendamiseks. Kampaania jooksis läbi terve suve ja reklaamil loendasime selle aasta hetkelist liiklus- ja uppumissurmade arvu Eestis. Kampaania mõjus lugejale läbi korduste – iga järgmise korraga, kus lugeja reklaami nägi, oli ohvrite arv kasvanud.',
+         description: 'Eesti Päevalehe ja Delfi uppumis- ja liiklussurmade vähendamise kampaania printreklaamide loovidee ja disain. Kampaania kestis läbi terve suve ja reklaamil loendati selle aasta hetkelist liiklus- ja uppumissurmade arvu Eestis. Kampaania mõjus lugejale läbi korduste – iga järgmise korraga, kus lugeja reklaami nägi, oli ohvrite arv kasvanud.',
          images: [IELMock, IEL2, IEL1],
       },
       {
          title: 'Carefab',
          year: '2020',
-         description: 'Logo ja branding tekstiiliga tegelevale ettevõttele Carefab',
+         description: 'Logo ja bränding tekstiiliga tegelevale ettevõttele Carefab',
          images: [CarefabMock1, CarefabTags, CarefabBedding, CarefabBox, /* CarefabLogo */ ],
       }
    ]

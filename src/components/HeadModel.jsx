@@ -202,6 +202,7 @@ export default function HeadModel(props) {
    const grantPermission = (headRef) => {
       // feature detect
       if (isPhone && !permissionGiven) {
+         //is iOS 13 or later
          if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             DeviceOrientationEvent.requestPermission()
             .then(permissionState => {
@@ -234,7 +235,7 @@ export default function HeadModel(props) {
             });
          }
       }
-      }
+   }
 
    
    const handleOrientation = (event, headRef) => {
@@ -245,10 +246,19 @@ export default function HeadModel(props) {
       //let newOrientationZ = convertToValueRange(orientationZDelta, 0, 360, -0.25, 0.25);
       let newOrientationX = convertToValueRange(orientationXDelta, -180, 180, -0.25, 0.25);
       let newOrientationY = convertToValueRange(orientationYDelta, -90, 90, -0.25, 0.25);
+      
+      let newRotX = newOrientationX*2;
+      let newRotY = newOrientationY;
 
       //headRef.current.rotation.z = newOrientationZ;
-      headRef.current.rotation.x = newOrientationX*5;
-      headRef.current.rotation.y = newOrientationY*2.5;
+      headRef.current.rotation.x = newRotX;
+      headRef.current.rotation.y = newRotY
+
+      //ROTATE EYES
+      eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
+      eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
+      eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
+      eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
 
       //console.log(originalOrientation);
       //let deltaX = originalOrientation[0] - orientationX;

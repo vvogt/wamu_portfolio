@@ -19,10 +19,12 @@ export default function LightBox(props) {
    });
 
    const handlePress = (event) => {
-      if (event.key === "ArrowLeft") {
+      if (event.key === "ArrowLeft" || event.key === "Left") {
          swapImage(props.items.length, props.activeItem, -1)
-      } else if (event.key === "ArrowRight") {
+      } else if (event.key === "ArrowRight" || event.key === "Right") {
          swapImage(props.items.length, props.activeItem, 1)
+      } else if (event.key === "Escape" || event.key === "Esc") {
+         props.setItem(false);
       }
    }
 

@@ -56,19 +56,23 @@
       width: auto;
       height: 30px;
       z-index: 10;
+
+      &.purple {
+         .cls-1 {
+            stroke: $purple;
+            transition: all 0.25s ease-in;
+         }
+      }
       
       .cls-1 {
          stroke: $white;
          fill:none;
          stroke-miterlimit:10;
          stroke-width:2px;
-
-         &.purple {
-            stroke: $purple;
-         }
+         transition: all 0.25s ease-in;
       }
 
-      @include mq(1050) {
+      @include mq(1625) {
          position: fixed;
       }
    }
@@ -123,7 +127,7 @@
             flex-grow: none;
             box-sizing: border-box;
             position: absolute;
-            transform: translate(-50%, 70px);
+            transform: translate(-50%, 50px);
 
             @include mq(680) {
                font-size: rem-calc(15);
