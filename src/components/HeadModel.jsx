@@ -5,7 +5,7 @@ import {
    useFrame,
    useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Throttle, throttle } from "../helpers"
+import { isMobile } from "react-device-detect";
 
 import MyHead from '../models/vahur_v2_beardTest5.glb'
 import Glasses from '../models/vv_glasses.glb'
@@ -27,24 +27,33 @@ function iOS() {
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
-function Loading() {
-   return (
-      <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
-         <sphereGeometry attach="geometry" args={[1, 16, 16]} />
-         <meshStandardMaterial
-            attach="material"
-            color="white"
-            transparent
-            opacity={0.6}
-            roughness={1}
-            metalness={0}
-         />
-      </mesh>
-   );
-}
-
 export default function HeadModel(props) {
-   const canvasRef = useRef(null);
+   const headRef = useRef(null);
+   const eyeL = useRef();
+   const eyeR = useRef();
+   const originalOrientation = useRef();
+   //const originalOrientationY = useRef(null)
+   //const originalOrientationZ = useRef(null)
+   const [isPhone] = useState(isMobile);
+   const [permissionGiven, setPermissionGiven] = useState(null);
+   console.log('rerendering');
+
+   function Loading() {
+      return (
+         <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
+            <sphereGeometry attach="geometry" args={[1, 16, 16]} />
+            <pointLight position={[10, 10, 10]} />
+            <meshStandardMaterial
+               attach="material"
+               color="#ffcd3e"
+               transparent
+               opacity={1}
+               roughness={0.45}
+               metalness={0}
+            />
+         </mesh>
+      );
+   }
 
    function degToEuler(array) {
       let newArray = [];
@@ -55,9 +64,6 @@ export default function HeadModel(props) {
    }
    
    function Head() {
-      const group = useRef();
-      const eyeL = useRef();
-      const eyeR = useRef();
       const { nodes } = useLoader(GLTFLoader, MyHead);
       const glasses = useLoader(GLTFLoader, Glasses);
       const eyeTexture = useLoader(TextureLoader, EyeTexture);
@@ -90,24 +96,18 @@ export default function HeadModel(props) {
 
          if (delta  > interval) {
             // The draw or time dependent code are here
-            rotateHead(event);
+            if(!isPhone) {rotateHeadOnMouse(event);}
             delta = delta % interval;
          }
       });
-
-      let mouseY;
-      let mouseX;
    
-      const rotateHead = (event) => {
+      const rotateHeadOnMouse = (event) => {
          newRotY = event.mouse.x/5;
          newRotX = -event.mouse.y/5;
-         mouseX = (event.mouse.x * window.innerWidth) / 2
-         mouseY = (event.mouse.y * window.window.innerHeight) / 2
-
          
          if (newRotX < 0.25) {
-            group.current.rotation.x = newRotX;
-            group.current.rotation.y = newRotY;
+            headRef.current.rotation.x = newRotX;
+            headRef.current.rotation.y = newRotY;
             
             //ROTATE EYES
             eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
@@ -115,31 +115,13 @@ export default function HeadModel(props) {
             eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
             eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
          } else {
+            // FORCE PAGE TO RELOAD WHEN MOUSE POSITION VALUE IS TOO LARGE (happens when page is refreshed while scrolled down)
             window.location.reload()
          }
-
-/*          group.current.rotation.x = newRotX;
-         group.current.rotation.y = newRotY;
-   
-         //TO MAKE SURE THE ROTATION CAN NOT BE TOO HIGH
-         if (newRotX > 0.2) {newRotX = 0.2}
-         else if (newRotX < -0.2) {newRotX = -0.2}
-         
-         if (newRotY > 0.2) {newRotY = 0.2}
-         else if (newRotY < -0.2) {newRotY = -0.2} 
-   
-         group.current.rotation.x = newRotX;
-         group.current.rotation.y = newRotY;
-
-         //ROTATE EYES
-         eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
-         eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
-         eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
-         eyeR.current.rotation.x = -0.05 + newRotX * 1.6; */
       }
 
       return (
-         <group ref={group} position={[0, 0, 0]} scale={[headScale, headScale, headScale]}>
+         <group ref={headRef} position={[0, 0, 0]} scale={[headScale, headScale, headScale]}>
             {/* HEAD */}
             <mesh visible position={[0, 0, 0]} geometry={nodes.FaceBuilderHead.geometry}>
                <meshStandardMaterial
@@ -217,31 +199,72 @@ export default function HeadModel(props) {
       );
    }
 
-   const grantPermission = () => {
-    // feature detect
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      DeviceOrientationEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            window.addEventListener('deviceorientation', (event) => this.handleOrientation(event));
-          }
-        })
-        .catch(console.error);
-    } else {
-      // handle regular non iOS 13+ devices
-    }
+   const grantPermission = (headRef) => {
+      // feature detect
+      if (isPhone && !permissionGiven) {
+         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+               if (permissionState === 'granted') {
+                  window.addEventListener('deviceorientation', (event) => {
+                     if (!originalOrientation.x) {
+                        originalOrientation.z = event.alpha;
+                        originalOrientation.x = event.beta;
+                        originalOrientation.y = event.gamma;
+                        console.log(originalOrientation);
+                        console.log(event.alpha, event.beta, event.gamma);
+                     }
+                     handleOrientation(event, headRef)
+                  });
+                  setPermissionGiven(true);
+               }
+            })
+            .catch(console.error);
+         } else {
+            //if not iphone
+            window.addEventListener('deviceorientation', (event) => {
+               if (!originalOrientation.x) {
+                  originalOrientation.z = event.alpha;
+                  originalOrientation.x = event.beta;
+                  originalOrientation.y = event.gamma;
+                  console.log(originalOrientation);
+                  console.log(event.alpha, event.beta, event.gamma);
+               }
+               handleOrientation(event, headRef);
+            });
+         }
+      }
+      }
+
+   
+   const handleOrientation = (event, headRef) => {
+      //let orientationZDelta =  event.alpha - originalOrientation.z;
+      let orientationXDelta =  event.beta - originalOrientation.x;
+      let orientationYDelta =  event.gamma - originalOrientation.y;
+
+      //let newOrientationZ = convertToValueRange(orientationZDelta, 0, 360, -0.25, 0.25);
+      let newOrientationX = convertToValueRange(orientationXDelta, -180, 180, -0.25, 0.25);
+      let newOrientationY = convertToValueRange(orientationYDelta, -90, 90, -0.25, 0.25);
+
+      //headRef.current.rotation.z = newOrientationZ;
+      headRef.current.rotation.x = newOrientationX*5;
+      headRef.current.rotation.y = newOrientationY*2.5;
+
+      //console.log(originalOrientation);
+      //let deltaX = originalOrientation[0] - orientationX;
+      //console.log(deltaX);
    }
+
+   const convertToValueRange = (oldValue, oldMin, oldMax, newMin, newMax) => {
+      let oldRange = (oldMax - oldMin)  
+      let newRange = (newMax - newMin)  
+      let newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin
+      return newValue;
+   } 
 
    const handleTouch = event => {
-      iOS() && grantPermission();
+      iOS() && grantPermission(headRef);
    }
-
-   const thisCanvas = useRef(null);
-   const [nsm, setNsm] = useState(null);
-
-   const doIt = () => {
-      this.forceUpdate();
-   } 
 
    return (
       <Canvas className="canvas3D" resize={{ scroll: false }} onClick={() => handleTouch()}>

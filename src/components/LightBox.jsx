@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import Arrow from '../images/svg/arrow_right.svg'
 import CloseIcon from '../images/svg/close_icon.svg'

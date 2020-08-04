@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState} from 'react'
 import LightBox from './LightBox'
 
 import {setBgImage} from '../helpers'
@@ -24,8 +24,6 @@ import EPLLogo from '../images/portfolio/EPL_110_final.jpg';
 
 //Carefab
 import CarefabMock1 from '../images/portfolio/carefab_fabricMock1.jpg';
-import CarefabMock2 from '../images/portfolio/carefab_fabricMock2.jpg';
-import CarefabLogo from '../images/portfolio/Carefab_logo.jpg';
 import CarefabTags from '../images/portfolio/carefab_mocktags.jpg';
 import CarefabBedding from '../images/portfolio/carefab_voodipesu.jpg';
 import CarefabBox from '../images/portfolio/carefab_box.jpg';

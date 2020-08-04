@@ -2,7 +2,6 @@ import React from 'react';
 
 //COMPONENTS
 import Hero from './Hero';
-import ImageWithText from './ImageWithText';
 import Portfolio from './Portfolio'
 import Contacts from './Contacts'
 import AboutMe from './AboutMe'

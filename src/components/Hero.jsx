@@ -1,22 +1,17 @@
 import React from 'react';
 import HeadModel from './HeadModel';
 import CV from './CV';
-import throttle from 'underscore';
 
 import Stars from '../images/svg/stars.svg';
 import Stars2 from '../images/svg/stars_bigger.svg';
-import BgShape from '../images/background/bgshape_yellow.png';
 
 class Hero extends React.Component {
    constructor() {
       super();
-
       this.state = { cvCategory: 'work', orientation: [] }; 
       this.heroRef = React.createRef();
    }
 
-   componentDidMount() {
-   }
 
    componentWillUnmount() {
       if (window.DeviceOrientationEvent) {
@@ -25,19 +20,6 @@ class Hero extends React.Component {
       } else {
         console.log("Sorry, your browser doesn't support Device Orientation");
       }
-   }
-
-   handleOrientation = (event) => {
-      let alpha    = event.alpha;
-      let beta     = event.beta;
-      let gamma    = event.gamma;
-
-      
-      // Do stuff with the new orientation data
-   }
-
-   renderOrientation = () => {
-      
    }
    
    renderBgDivs = (numOfDivs) => {
@@ -98,14 +80,14 @@ class Hero extends React.Component {
                </div>
                <div className="hero__content__cv">
                   <div className="cvButtons">
-                     <button className={`cvButton ${this.state.cvCategory !== 'work' ? 'inactive' : ''}`} type="button" tabindex="0" onClick={() => this.setCvCategory('work')}>
-                        <span className="cvButton__content" tabindex="-1">
+                     <button className={`cvButton ${this.state.cvCategory !== 'work' ? 'inactive' : ''}`} type="button" tabIndex="0" onClick={() => this.setCvCategory('work')}>
+                        <span className="cvButton__content" tabIndex="-1">
                           TÖÖ
                         </span>
                      </button>
                      <div className="divider">/</div>
-                     <button class={`cvButton ${this.state.cvCategory !== 'education' ? 'inactive' : ''}`} type="button" tabindex="0" onClick={() => this.setCvCategory('education')}>
-                        <span class="cvButton__content" tabindex="-1">
+                     <button className={`cvButton ${this.state.cvCategory !== 'education' ? 'inactive' : ''}`} type="button" tabIndex="0" onClick={() => this.setCvCategory('education')}>
+                        <span className="cvButton__content" tabIndex="-1">
                           HARIDUS
                         </span>
                      </button>
