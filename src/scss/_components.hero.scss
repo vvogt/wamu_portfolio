@@ -383,12 +383,13 @@
             color: $purple;
             font-family: $font;
             padding: 5px 5px;
-
+            
             .divider {
                margin: 0px 10px;
             }
-
+            
             .cvButton {
+               cursor: pointer;
                z-index: 4;
                padding: 0px;
                border: 0px;

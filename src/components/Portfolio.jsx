@@ -82,7 +82,11 @@ export default function Portfolio(props) {
 
    const renderPortfolioPreviews = (items) => {
       return items.map((item, index) => {
-         return <li className="preview" style={setBgImage(item.images[0], 'scroll', '250px')} key={index} onClick={() => setLightBoxItem(index)}/>
+         return (
+            <li className="preview" style={setBgImage(item.images[0], 'scroll', '250px')} key={index} onClick={() => setLightBoxItem(index)}>
+               <div className="title shown">{item.title}</div>
+            </li>
+         )
       })
    }
 

@@ -120,7 +120,7 @@ class Hero extends React.Component {
                      <h1>{this.props.lastName}</h1>
                      <p>arendaja / disainer</p>
                   </div>
-                  <a href="mailto:info@vvogt.ee"><button className="contactButton">KIRJUTA MULLE</button></a>
+                  <a href="mailto:info@vvogt.ee" className="contactButton">KIRJUTA MULLE</a>
                   <img src={Stars} alt="starry background" className="bgStars"/>
                   <img src={Stars2} alt="starry background layer 2" className="bgStars bigger"/>
                </div>

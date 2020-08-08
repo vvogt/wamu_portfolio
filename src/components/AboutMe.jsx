@@ -15,17 +15,17 @@ export default function AboutMe() {
                Veidi aega tagasi otsustasin võtta vastu uue väljakutse ja õppida lisaks ka veebiarendust.
                Praeguseks olengi kaks aastat õppinud ülikoolis informaatikat ning töötanud vabakutselise disainerina ja
                lisaks õpin vabal ajal omal käel tehnoloogiaid, milles näen tulevikupotensiaali.
-               Tulevikus tahaksin oma elukutses ühendada nii front-end arenduse, kui ka UI / UX disaini.
+               Tulevikus kavatsen oma elukutses ühendada nii front-end arenduse, kui ka UI / UX disaini.
             </p>
             <img className="owlImage" src={Okul} alt="A weird owl illustration"/>
          </div>
          <div className="about__right">
             <h2>Milles ma olen väga hea?</h2>
             <ul className="bestSkills">
-               <li><a /*href="https://www.adobe.com/creativecloud.html" */ >Illustrator</a></li>
-               <li><a /*href="https://www.adobe.com/creativecloud.html" */ >Photoshop</a></li>
-               <li><a /*href="https://www.adobe.com/creativecloud.html" */ >InDesign</a></li>
-               <li><a /*href="https://www.adobe.com/creativecloud.html" */ >Adobe XD</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html" >Illustrator</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html" >Photoshop</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html" >InDesign</a></li>
+               <li><a href="https://www.adobe.com/creativecloud.html" >Adobe XD</a></li>
             </ul>
             <h2>Mida ma oskan?</h2>
             <p>Arendan enda oskusi nendes tehnoloogiates pidevalt.</p>
