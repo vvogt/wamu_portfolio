@@ -32,10 +32,16 @@ export default function HeadModel(props) {
    const headRef = useRef(null);
    const eyeL = useRef();
    const eyeR = useRef();
-   const originalOrientation = useRef();
    const rotationDirection = useRef([1, -1]);
+   const yEasingTime = useRef(null);
+   const xEasingTime = useRef(null);
    const [isPhone] = useState(isMobile);
-   const [permissionGiven, setPermissionGiven] = useState(null);
+   
+
+   //states used for rotation based on deviceOrientation
+
+   //const originalOrientation = useRef();
+   //const [permissionGiven, setPermissionGiven] = useState(null);
 
    function Loading() {
       return (
@@ -104,31 +110,43 @@ export default function HeadModel(props) {
          }
       });
 
-      
+      const cubicBezier = (p0, p1, p2, p3, t) => {
+         let newPos = Math.pow(1 - t, 3) * p0 + Math.pow(1 - t, 2) * 3 * t * p1 + (1 - t) * 3 * t * t * p2 + t * t * t * p3;
+         return newPos;
+      }
+
+      xEasingTime.current = getRandomNum(0, 10) / 10;
+      yEasingTime.current = getRandomNum(0, 10) / 10;
+
+      console.log(xEasingTime.current, yEasingTime.current);
 
       const rotateHeadAnim = () => {
-         let rotX = headRef.current.rotation.x;
-         let rotY = headRef.current.rotation.y;
+         let xNew = cubicBezier(-0.15, -0.15, 0.1, 0.1, xEasingTime.current);
+         let yNew = cubicBezier(-0.25, -0.25, 0.25, 0.25, yEasingTime.current);
 
-         console.log(rotX, rotationDirection)
+         xNew = Math.round(xNew*1000) / 1000;
+         yNew = Math.round(yNew*1000) / 1000;
 
-         if ((rotationDirection.current[0] === 1 && rotX >= 0.2) || (rotationDirection.current[0] === -1 && rotX <= -0.2)) {
-            console.log('suurem kui 0.25');
+         headRef.current.rotation.x = xNew;
+         headRef.current.rotation.y = yNew;
+
+         rotateEyes();
+         
+         //handle the easingTimes
+         let newYEasingTime = yEasingTime.current + (0.005 * rotationDirection.current[1]);
+         let newXEasingTime = xEasingTime.current + (0.004 * rotationDirection.current[0]);
+
+         yEasingTime.current = Math.round(newYEasingTime*1000) / 1000;
+         xEasingTime.current = Math.round(newXEasingTime*1000) / 1000;
+
+         if ((rotationDirection.current[0] < 0 && xEasingTime.current <= 0) || (rotationDirection.current[0] > 0 && xEasingTime.current >= 1)) {
             rotationDirection.current[0] *= (-1);
          }
          
-         if ((rotationDirection.current[1] === 1 && rotY >= 0.2) || (rotationDirection.current[1] === -1 && rotY <= -0.2)) {
-            console.log('suurem kui 0.25');
+         if ((rotationDirection.current[1] < 0 && yEasingTime.current <= 0) || (rotationDirection.current[1] > 0 && yEasingTime.current >= 1)) {
             rotationDirection.current[1] *= (-1);
          }
-
-         let xPlus = rotationDirection.current[0] * 0.01;
-         let yPlus = rotationDirection.current[1] * 0.01;
-
-         headRef.current.rotation.x += xPlus * 0.25;
-         headRef.current.rotation.y += yPlus * 0.35;
-
-         rotateEyes();
+         console.log(xNew, yNew);
       }
    
       const rotateHeadOnMouse = (event) => {
@@ -153,19 +171,19 @@ export default function HeadModel(props) {
          let headRotY = headRef.current.rotation.y
          
          //ROTATE EYES
-         eyeL.current.rotation.y = -1.55 + headRotY * 1.6;
-         eyeL.current.rotation.x = -0.05 + headRotX * 1.6;
-         eyeR.current.rotation.y = -1.53 + headRotY * 1.6;
-         eyeR.current.rotation.x = -0.05 + headRotX * 1.6;
+         eyeL.current.rotation.y = -1.55 + headRotY * 1.5;
+         eyeL.current.rotation.x = -0.05 + headRotX * 1.5;
+         eyeR.current.rotation.y = -1.53 + headRotY * 1.5;
+         eyeR.current.rotation.x = -0.05 + headRotX * 1.5;
       }
 
       let headRotX = 0;
       let headRotY = 0;
 
       if (isPhone) {
-         headRotX = getRandomNum(-25, 25) / 100;
-         headRotY = getRandomNum(-25, 25) / 100;
-      } 
+         headRotX = cubicBezier(-0.25, 0, 0.25, 0, xEasingTime.current);
+         headRotY = cubicBezier(-0.25, 0, 0.25, 0, yEasingTime.current);
+      }
 
       return (
          <group ref={headRef} position={[0, 0, 0]} scale={[headScale, headScale, headScale]} rotation={[headRotX, headRotY, 0]}>
@@ -246,7 +264,7 @@ export default function HeadModel(props) {
       );
    }
 
-   const grantPermission = (headRef) => {
+   /* const grantPermission = (headRef) => {
       // feature detect
       if (isPhone && !permissionGiven) {
          //is iOS 13 or later
@@ -283,7 +301,6 @@ export default function HeadModel(props) {
          }
       }
    }
-
    
    const handleOrientation = (event, headRef) => {
       //let orientationZDelta =  event.alpha - originalOrientation.z;
@@ -310,7 +327,7 @@ export default function HeadModel(props) {
       //console.log(originalOrientation);
       //let deltaX = originalOrientation[0] - orientationX;
       //console.log(deltaX);
-   }
+   } */
 
    const convertToValueRange = (oldValue, oldMin, oldMax, newMin, newMax) => {
       let oldRange = (oldMax - oldMin)  
