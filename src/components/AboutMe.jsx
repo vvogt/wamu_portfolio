@@ -28,7 +28,7 @@ export default function AboutMe() {
                <li><a /*href="https://www.adobe.com/creativecloud.html" */ >Adobe XD</a></li>
             </ul>
             <h2>Mida ma oskan?</h2>
-            <p>"Oskan" on muidugi suhteline mõiste, kuna praktilist kogemust arenduses mul siiski palju ei ole.</p>
+            <p>Arendan enda oskusi nendes tehnoloogiates pidevalt.</p>
             <ul className="interests">
                <li><a href="https://reactjs.org/">React</a></li>
                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>

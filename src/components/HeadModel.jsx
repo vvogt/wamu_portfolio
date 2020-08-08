@@ -6,6 +6,7 @@ import {
    useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { isMobile } from "react-device-detect";
+import { getRandomNum } from "../helpers";
 
 import MyHead from '../models/vahur_v2_beardTest5.glb'
 import Glasses from '../models/vv_glasses.glb'
@@ -32,11 +33,9 @@ export default function HeadModel(props) {
    const eyeL = useRef();
    const eyeR = useRef();
    const originalOrientation = useRef();
-   //const originalOrientationY = useRef(null)
-   //const originalOrientationZ = useRef(null)
+   const rotationDirection = useRef([1, -1]);
    const [isPhone] = useState(isMobile);
    const [permissionGiven, setPermissionGiven] = useState(null);
-   console.log('rerendering');
 
    function Loading() {
       return (
@@ -90,16 +89,47 @@ export default function HeadModel(props) {
       }
       
       camera.position.set(0, 0, 4);
-   
+
       useFrame((event) => {
          delta += clock.getDelta();
 
          if (delta  > interval) {
             // The draw or time dependent code are here
-            if(!isPhone) {rotateHeadOnMouse(event);}
+            if(!isPhone) {
+               rotateHeadOnMouse(event);}
+            else {
+               rotateHeadAnim()
+            }
             delta = delta % interval;
          }
       });
+
+      
+
+      const rotateHeadAnim = () => {
+         let rotX = headRef.current.rotation.x;
+         let rotY = headRef.current.rotation.y;
+
+         console.log(rotX, rotationDirection)
+
+         if ((rotationDirection.current[0] === 1 && rotX >= 0.2) || (rotationDirection.current[0] === -1 && rotX <= -0.2)) {
+            console.log('suurem kui 0.25');
+            rotationDirection.current[0] *= (-1);
+         }
+         
+         if ((rotationDirection.current[1] === 1 && rotY >= 0.2) || (rotationDirection.current[1] === -1 && rotY <= -0.2)) {
+            console.log('suurem kui 0.25');
+            rotationDirection.current[1] *= (-1);
+         }
+
+         let xPlus = rotationDirection.current[0] * 0.01;
+         let yPlus = rotationDirection.current[1] * 0.01;
+
+         headRef.current.rotation.x += xPlus * 0.25;
+         headRef.current.rotation.y += yPlus * 0.35;
+
+         rotateEyes();
+      }
    
       const rotateHeadOnMouse = (event) => {
          newRotY = event.mouse.x/5;
@@ -110,18 +140,35 @@ export default function HeadModel(props) {
             headRef.current.rotation.y = newRotY;
             
             //ROTATE EYES
-            eyeL.current.rotation.y = -1.55 + newRotY * 1.6;
-            eyeL.current.rotation.x = -0.05 + newRotX * 1.6;
-            eyeR.current.rotation.y = -1.53 + newRotY * 1.6;
-            eyeR.current.rotation.x = -0.05 + newRotX * 1.6;
+
+            rotateEyes();
          } else {
             // FORCE PAGE TO RELOAD WHEN MOUSE POSITION VALUE IS TOO LARGE (happens when page is refreshed while scrolled down)
             window.location.reload()
          }
       }
 
+      const rotateEyes = () => {
+         let headRotX = headRef.current.rotation.x
+         let headRotY = headRef.current.rotation.y
+         
+         //ROTATE EYES
+         eyeL.current.rotation.y = -1.55 + headRotY * 1.6;
+         eyeL.current.rotation.x = -0.05 + headRotX * 1.6;
+         eyeR.current.rotation.y = -1.53 + headRotY * 1.6;
+         eyeR.current.rotation.x = -0.05 + headRotX * 1.6;
+      }
+
+      let headRotX = 0;
+      let headRotY = 0;
+
+      if (isPhone) {
+         headRotX = getRandomNum(-25, 25) / 100;
+         headRotY = getRandomNum(-25, 25) / 100;
+      } 
+
       return (
-         <group ref={headRef} position={[0, 0, 0]} scale={[headScale, headScale, headScale]}>
+         <group ref={headRef} position={[0, 0, 0]} scale={[headScale, headScale, headScale]} rotation={[headRotX, headRotY, 0]}>
             {/* HEAD */}
             <mesh visible position={[0, 0, 0]} geometry={nodes.FaceBuilderHead.geometry}>
                <meshStandardMaterial
@@ -273,7 +320,7 @@ export default function HeadModel(props) {
    } 
 
    const handleTouch = event => {
-      iOS() && grantPermission(headRef);
+      //iOS() && grantPermission(headRef);
    }
 
    return (

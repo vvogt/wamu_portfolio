@@ -41,3 +41,8 @@ export const replaceSpaces = (string) => {
    
    return `/${stringNew.toLowerCase()}`
 }
+
+export const getRandomNum = (min, max) => {
+  let random = Math.random() * (max - min) + min;
+  return Math.round(random);
+}
